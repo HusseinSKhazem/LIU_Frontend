@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+  rel="stylesheet"
+/>
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/admin.css" />
+  <title>Document</title>
+</head>
+<body>
+<div class="container">
+  <aside>
+    <div class="toggle">
+      <div class="logo">
+        <img src="assets/Logo.png" />
+        <h2>LIU<span class="danger">Admin</span></h2>
+      </div>
+      <div class="close" id="close-btn">
+        <span class="material-icons-sharp"> close </span>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <a id="dashboardLink">
+        <span class="material-icons-sharp"> dashboard </span>
+        <h3>Dashboard</h3>
+      </a>
+      <a id="usersLink" href="./Users.html" class="active">
+        <span class="material-icons-sharp"> person_outline </span>
+        <h3>Users</h3>
+      </a>
+      <a id="usersLink" href="./ChangeEmail.html">
+        <span class="material-icons-sharp"> email </span>
+        <h3>Emails</h3>
+      </a>
+      <a id="usersLink" href="./DeleteUsers.html" >
+        <span class="material-icons-sharp"> delete </span>
+        <h3>Delete</h3>
+      </a>
+      <a id="usersLink" href="./RecruiterController.html" >
+        <span class="material-icons-sharp"> person </span>
+        <h3>Recruiters</h3>
+      </a>
+      <a href="#" onclick="logout()">
+        <span class="material-icons-sharp"> logout </span>
+        <h3>Logout</h3>
+      </a>
+    </div>
+  </aside>
+
+  <main>
+    <h2>Users</h2>
+    <div>
+      <h3>Search Users By UserRole:</h3>
+      <hr>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="UserRole">User Role</label>
+          <div class="d-flex justify-content-center align-items-center">
+            <input type="number" class="form-control" id="UserRole" placeholder="User Role" />
+            <button class="btn btn-outline-success ml-4" onclick="searchUsers()">Search</button>
+          </div>
+        </div>
+      </div>
+  
+      <div id="usersTableContainer">
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+      <div id="paginationControls" class="controls"></div></div>
+    </div>
+  </main>
+  <div class="right-section">
+    <div class="nav">
+      <button id="menu-btn">
+        <span class="material-icons-sharp"> menu </span>
+      </button>
+
+      <div class="profile">
+        <div class="info">
+          <p>Hey, <b>Admin</b></p>
+          <small class="text-muted">Admin</small>
+        </div>
+        <div class="profile-photo">
+          <img src="assets/Logo.png" />
+        </div>
+      </div>
+    </div>
+    <!-- End of Nav -->
+
+    <div class="user-profile">
+      <div class="logo">
+        <img src="assets/Logo.png" />
+        <h2>Admin</h2>
+        <p>LIU</p>
+      </div>
+    </div>
+
+    <div class="reminders">
+      <div class="header">
+        <h2>Reminders</h2>
+        <span class="material-icons-sharp"> notifications_none </span>
+      </div>
+
+      <div class="notification">
+        <div class="icon">
+          <span class="material-icons-sharp"> volume_up </span>
+        </div>
+        <div class="content">
+          <div class="info">
+            <h3>Workshop</h3>
+            <small class="text_muted"> 08:00 AM - 12:00 PM </small>
+          </div>
+          <span class="material-icons-sharp"> more_vert </span>
+        </div>
+      </div>
+
+      <div class="notification deactive">
+        <div class="icon">
+          <span class="material-icons-sharp"> edit </span>
+        </div>
+        <div class="content">
+          <div class="info">
+            <h3>Workshop</h3>
+            <small class="text_muted"> 08:00 AM - 12:00 PM </small>
+          </div>
+          <span class="material-icons-sharp"> more_vert </span>
+        </div>
+      </div>
+
+      <div class="notification add-reminder">
+        <div>
+          <span class="material-icons-sharp"> add </span>
+          <h3>Add Reminder</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"
+></script>
+<!-- Animate.css CDN link -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+  <script src="./js/JWT.js"></script>
+  <script src="./js/ListUsers.js"></script>
+  <script src="./js/index.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Animate.css CDN link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+        var token = localStorage.getItem("jwtToken");
+        if (!token) {
+          window.location.href = "login.html";
+        }});
+  </script>
+</body>
+</html>

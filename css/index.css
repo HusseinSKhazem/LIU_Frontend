@@ -1,0 +1,106 @@
+.navbar{
+  background-color: #0c2542;
+  padding: 25px;
+}
+.menu{
+  background-color: aliceblue;
+}
+
+.liu-logo{
+  width: 70px;
+  border: 3px solid #ffb019;
+  border-radius: 50%;
+}
+.n-title{
+  font-size: 1.2em;
+  margin-right: 50px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.common{
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+.body-1{
+  background-color:#ffb019 ;
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+@media (max-width: 767px) {
+  .navbar-collapse {
+      margin-top: 30px; 
+  }
+}
+
+.login{
+  font-size: 1.3em;
+ 
+}
+.b-title{
+  font-style: italic;
+}
+.btn-login{
+background-color: #0c2542;
+color: #ffb019;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+padding: 10px;
+font-size: 2em;
+border-radius: 15%;
+}
+.bd-border{
+  border: 1px solid #0c2542;
+}
+
+.orange-color{
+  color: #ffb019;
+}
+
+.ending{
+  background-color: #0c2542;
+}
+svg {
+  font-family: 'Russo One', sans-serif;
+  position: relative; 
+  width: 100%; height: 100%;
+}
+svg text {
+  text-transform: uppercase;
+  animation: stroke 3s infinite alternate;
+  stroke-width: 2;
+  stroke: #365fa0;
+  font-size: 120px;
+}
+@keyframes stroke {
+  0%   {
+    fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1);
+    stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+  }
+  70%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); }
+  80%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); stroke-width: 3; }
+  100% {
+    fill: rgba(72,138,204,1); stroke: #ffb019; 
+    stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  svg text {
+    font-size: 180px;
+  }
+}
+
+
+
+
+

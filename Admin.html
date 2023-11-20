@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/admin.css" />
+    <title>Responsive Dashboard Design #1 | AsmrProg</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Sidebar Section -->
+      <aside>
+        <div class="toggle">
+          <div class="logo">
+            <img src="assets/Logo.png" />
+            <h2>LIU<span class="danger">Admin</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a id="dashboardLink" class="active" href="./Admin.html">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a id="usersLink" href="./Users.html">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Users</h3>
+          </a>
+          <a id="usersLink" href="./ChangeEmail.html">
+            <span class="material-icons-sharp"> email </span>
+            <h3>Emails</h3>
+          </a>
+          <a id="usersLink" href="./DeleteUsers.html">
+            <span class="material-icons-sharp"> delete </span>
+            <h3>Delete</h3>
+          </a>
+          <a id="usersLink" href="./RecruiterController.html" >
+            <span class="material-icons-sharp"> person </span>
+            <h3>Recruiters</h3>
+          </a>
+          <a href="#" onclick="logout()">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+      <!-- End of Sidebar Section -->
+
+      <!-- Main Content -->
+      <main id="mainContent">
+        <div class="Title">
+          <h1>Admin Pannel</h1>
+        </div>
+        <div class="Container mt-5 add-i">
+          <div>
+            <h2>Add Instructor</h2>
+            <form id="addInstructorForm">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail4"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword4"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputUsername"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="d-flex justify-content-center align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addInstructor()"
+                >
+                  Add Instructor
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="Container mt-5 add-i">
+        <form id="addAdminForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="adminEmail">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="adminEmail"
+                placeholder="Email"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="adminPassword">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="adminPassword"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="adminUsername">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="adminUsername"
+              placeholder="Username"
+            />
+          </div>
+          <!-- New input field for Admin Role -->
+          <div class="form-group">
+            <label for="adminRole">Role</label>
+            <input
+              type="text"
+              class="form-control"
+              id="adminRole"
+              placeholder="Admin"
+              disabled
+            />
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <!-- Changed button text and onclick function -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addAdmin()"
+            >
+              Add Admin
+            </button>
+          </div>
+        </form></div>
+
+
+        <div class="Container mt-5 add-i">
+        <form id="addStudentForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="studentEmail">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="studentEmail"
+                placeholder="Email"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="studentPassword">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="studentPassword"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="studentUsername">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="studentUsername"
+              placeholder="Username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="majorID">Major ID</label>
+            <input
+              type="number"
+              class="form-control"
+              id="majorID"
+              placeholder="Major ID"
+            />
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addStudent()"
+            >
+              Add Student
+            </button>
+          </div>
+        </form>
+        </div>
+      </main>
+
+      <!-- Right Section -->
+      <div class="right-section">
+        <div class="nav">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="dark-mode">
+            <span class="material-icons-sharp active"> light_mode </span>
+            <span class="material-icons-sharp"> dark_mode </span>
+          </div>
+
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Admin</b></p>
+              <small class="text-muted">Admin</small>
+            </div>
+            <div class="profile-photo">
+              <img src="assets/Logo.png" />
+            </div>
+          </div>
+        </div>
+        <!-- End of Nav -->
+
+        <div class="user-profile">
+          <div class="logo">
+            <img src="assets/Logo.png" />
+            <h2>Admin</h2>
+            <p>LIU</p>
+          </div>
+        </div>
+
+        <div class="reminders">
+          <div class="header">
+            <h2>Reminders</h2>
+            <span class="material-icons-sharp"> notifications_none </span>
+          </div>
+
+          <div class="notification">
+            <div class="icon">
+              <span class="material-icons-sharp"> volume_up </span>
+            </div>
+            <div class="content">
+              <div class="info">
+                <h3>Workshop</h3>
+                <small class="text_muted"> 08:00 AM - 12:00 PM </small>
+              </div>
+              <span class="material-icons-sharp"> more_vert </span>
+            </div>
+          </div>
+
+          <div class="notification deactive">
+            <div class="icon">
+              <span class="material-icons-sharp"> edit </span>
+            </div>
+            <div class="content">
+              <div class="info">
+                <h3>Workshop</h3>
+                <small class="text_muted"> 08:00 AM - 12:00 PM </small>
+              </div>
+              <span class="material-icons-sharp"> more_vert </span>
+            </div>
+          </div>
+
+          <div class="notification add-reminder">
+            <div>
+              <span class="material-icons-sharp"> add </span>
+              <h3>Add Reminder</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Animate.css CDN link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check for token in local storage
+        var token = localStorage.getItem("jwtToken");
+
+        // If token is not present, redirect to login.html
+        if (!token) {
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+    <script src="./js/JWT.js"></script>
+    <script src="./js/AddStudent.js"></script>
+    <script src="./js/AddAdmin.js"></script>
+    <script src="./js/AddInstructors.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/orders.js"></script>
+  </body>
+</html>

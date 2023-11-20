@@ -1,0 +1,127 @@
+:root{
+--blue:#242582;
+--red:#F64C27;
+--dark-color: #19283f;
+--green-color: #33d1cc;
+--red-color: #ff3150;
+--yellow-color:#ffc400;
+--section-color:#eff7fa;
+}
+
+body{
+font-family: 'Roboto',sans-serif;  
+}
+
+.navbar{
+background-color: var(--dark-color);
+}
+.navbar .navbar-brand{
+ color: var(--red); 
+}
+
+.navbar-nav{
+  color: var(--red);
+}
+.navbar .navbar-nav .nav-link{
+  color: var(--red);
+  }
+
+.navbar .navbar-nav .nav-link .active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover
+{
+color:var(--red);
+}
+
+
+.navbar .navbar-toggler{
+  color: var(--red); 
+ }
+ 
+ .navbar .navbar-toggler:focus{
+   box-shadow: none;
+ }
+ .landing{ 
+  min-height: calc(100vh - 72px);
+  background-color: var(--dark-color);
+  }
+
+  .main-btn{
+  background-color: var(--red);
+  }
+
+  .landing h1{
+   color: var(--red); 
+  }
+
+  .landing p{
+    color: var(--red);
+  }
+
+  .main-title::after{
+    content:"";
+    width: 120px;
+    height: 2px;
+    background-color: var(--red);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .features .icon-holder{
+    height: 200px;
+  }
+  
+  .features .icon-holder svg{
+  left: 50%;
+  transform: translateX(-50%);
+  }
+  .features .icon-holder .number{
+   font-size: 12rem;
+   color: var(--section-color); 
+  }
+  
+  
+  .features .icon-holder .icon{
+   color: var(--green-color); 
+  }
+  .features .feat h4{
+    color:var(--yellow-color);
+  }
+
+  .Container1
+  {
+  background-color: white;  
+  }
+
+  .head{
+  color: var(--red);  
+font-size: 2em;
+  }
+  .mern{
+   background-color: var(--red); 
+  }
+
+  .word{
+  color: #eff7fa;  
+  font-family: 'Roboto',sans-serif;  
+  font-size: 6em;
+  color: transparent;
+    -webkit-text-stroke:1px var(--dark-color) ;  
+    background: url(orange-and-white-hazard-background.jpg);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 2s linear infinite;
+
+
+  }
+  @keyframes back{
+    100%{
+     background-position: 1000px 0;
+    } 
+   }
+   
+  .mern1{
+    background-color: var(--dark-color);
+  }

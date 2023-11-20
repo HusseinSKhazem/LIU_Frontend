@@ -1,0 +1,253 @@
+:root {
+  --dark-color: #19283F;
+  --green-color: #33D1CC;
+  --yellow-color: #FFC400;
+  --section-color: #EFF7FA;
+  --red-color: #FF3150;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
+}
+.active-btn {
+  color: var(--yellow-color);
+  background-color: var(--red-color);
+  text-decoration: none;
+  border: 1px solid var(--red-color);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.active-btn:hover {
+  background-color: transparent;
+  color: var(--dark-color);
+  border-color: var(--dark-color);
+}
+/* start NavBar */
+
+.navbar {
+  background-color: var(--dark-color);
+}
+
+.navbar .logo {
+  color: white;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: white;
+}
+.navbar .navbar-toggler {
+  color: white;
+  border-color: white;
+}
+.navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover {
+  color: var(--green-color);
+}
+
+.navbar .search {
+  color: var(--green-color);
+  border-left: 1px solid var(--green-color);
+}
+
+/* end NavBar */
+
+/* start landing section */
+
+.landing {
+  background-color: var(--dark-color);
+  min-height: calc(100vh - 72px);
+}
+
+/* end landing section */
+
+/* start services section  */
+.serv-cont svg {
+  color: var(--yellow-color);
+  font-size: 5rem;
+}
+
+.serv-cont::after {
+  content: '';
+  width: 120px;
+  height: 2px;
+  background-color: var(--green-color);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.services .icons {
+  height: 200px;
+}
+.services .icons svg {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.services .icons .number {
+  font-size: 12rem;
+  color: var(--section-color);
+}
+.services .icons .pen {
+  color: var(--green-color);
+  font-size: 4rem;
+}
+.services .feat h4 {
+  color: var(--yellow-color);
+}
+
+.projects {
+  background-color: var(--section-color);
+}
+
+.projects ul li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.projects ul li.active {
+  background-color: var(--red-color);
+  color: var(--yellow-color);
+}
+
+.projects ul li:not(.active):hover {
+  color: var(--red-color);
+}   
+
+.projects .box {
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.projects .box::before {
+  content: attr(data-work);
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #33d1cca1;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: 0.3s;
+  transform: translateX(calc(-100% - 5px));
+}
+
+.projects .box:hover::before {
+  transform: translateX(0);
+}
+
+.team {
+  background-color: var(--section-color);
+}
+
+.team .about-team h2 {
+  color: var(--yellow-color);
+}
+.team .box h4 {
+  color: white;
+  background-color: var(--green-color);
+}
+
+.start-proj {
+  background-color: var(--dark-color);
+}
+.start-proj h3 {
+  color: white;
+}
+
+.start-proj .active-btn:hover {
+  color: white;
+  border-color: white;
+}
+
+.blog .box {
+  border: 2px solid var(--section-color);
+}
+
+.subscribe {
+  background-color: #FFC400;
+}
+.subscribe .box {
+  width: 80%;
+}
+.subscribe .box label {
+  color: var(--dark-color);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.subscribe .box .email {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  width: 60%;
+  color: white;
+}
+
+.subscribe .box .email::placeholder {
+  color: white;
+  font-weight: 700;
+}
+.subscribe .box .email:focus {
+  outline: none;
+}
+
+.subscribe .box .sub-btn {
+  background-color: var(--dark-color);
+  color: var(--yellow-color);
+}
+
+.subscribe .box .sub-btn:hover {
+  background-color: transparent;
+  color: var(--dark-color);
+}
+
+.footer {
+  background-color: var(--dark-color);
+}
+
+.footer span.main {
+  color: var(--green-color);
+}
+.footer span.sec {
+  color: var(--yellow-color);
+}
+
+.footer .contact-btn {
+  width: 100%;
+}
+.footer .contact-btn a {
+  color: var(--yellow-color);
+}
+.footer .contact-btn:hover {
+  border-color: var(--green-color);
+}
+.footer .contact-btn:hover a {
+  color: var(--green-color);
+}
+.footer .icons svg {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+}
+
+.footer .icons .facebook {
+  background-color: #1877F2;
+}
+.footer .icons .twitter {
+  background-color: #1DA1F2;
+}
+.footer .icons .linkedin {
+  background-color: #0077B5;
+}
+.footer .icons .youtube {
+  background-color: #FF0000;
+}
