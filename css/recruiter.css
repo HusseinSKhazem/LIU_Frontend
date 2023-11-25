@@ -625,3 +625,57 @@ body{
 .LIU{
     width: 40px;
 }
+
+/* Enhanced styling with update and delete buttons */
+div.vacancy-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  div.vacancy-card:hover {
+    transform: scale(1.02);
+  }
+  
+  strong{
+    color: #1976D2;
+  }
+  div.card-body {
+    padding: 20px;
+  }
+  
+  div.job-offer {
+    font-size: 1.8rem;
+    color: #3498db;
+  }
+  
+  div.description-container {
+    height: 100px; /* Adjust this value based on your preference */
+    overflow: hidden;
+  }
+  
+  div.description {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust this value based on your preference */
+    -webkit-box-orient: vertical;
+  }
+  
+  div.button-container {
+    margin-top: 20px;
+  }
+  
+  .update-button,
+  .delete-button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  
