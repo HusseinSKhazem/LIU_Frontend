@@ -48,7 +48,7 @@
             <span class="material-icons-sharp"> delete </span>
             <h3>Delete</h3>
           </a>
-          <a id="usersLink" href="./RecruiterController.html" >
+          <a id="usersLink" href="./RecruiterController.html">
             <span class="material-icons-sharp"> person </span>
             <h3>Recruiters</h3>
           </a>
@@ -111,112 +111,111 @@
           </div>
         </div>
 
+        <div class="Container mt-5 add-i">
+          <form id="addAdminForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="adminEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="adminEmail"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="adminPassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="adminPassword"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adminUsername">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="adminUsername"
+                placeholder="Username"
+              />
+            </div>
+            <!-- New input field for Admin Role -->
+            <div class="form-group">
+              <label for="adminRole">Role</label>
+              <input
+                type="text"
+                class="form-control"
+                id="adminRole"
+                placeholder="Admin"
+                disabled
+              />
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <!-- Changed button text and onclick function -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="addAdmin()"
+              >
+                Add Admin
+              </button>
+            </div>
+          </form>
+        </div>
 
         <div class="Container mt-5 add-i">
-        <form id="addAdminForm">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="adminEmail">Email</label>
+          <form id="addStudentForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="studentEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="studentEmail"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="studentPassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="studentPassword"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="studentUsername">Username</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="adminEmail"
-                placeholder="Email"
+                id="studentUsername"
+                placeholder="Username"
               />
             </div>
-            <div class="form-group col-md-6">
-              <label for="adminPassword">Password</label>
+            <div class="form-group">
+              <label for="majorID">Major ID</label>
               <input
-                type="password"
+                type="number"
                 class="form-control"
-                id="adminPassword"
-                placeholder="Password"
+                id="majorID"
+                placeholder="Major ID"
               />
             </div>
-          </div>
-          <div class="form-group">
-            <label for="adminUsername">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              id="adminUsername"
-              placeholder="Username"
-            />
-          </div>
-          <!-- New input field for Admin Role -->
-          <div class="form-group">
-            <label for="adminRole">Role</label>
-            <input
-              type="text"
-              class="form-control"
-              id="adminRole"
-              placeholder="Admin"
-              disabled
-            />
-          </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <!-- Changed button text and onclick function -->
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="addAdmin()"
-            >
-              Add Admin
-            </button>
-          </div>
-        </form></div>
-
-
-        <div class="Container mt-5 add-i">
-        <form id="addStudentForm">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="studentEmail">Email</label>
-              <input
-                type="email"
-                class="form-control"
-                id="studentEmail"
-                placeholder="Email"
-              />
+            <div class="d-flex justify-content-center align-items-center">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="addStudent()"
+              >
+                Add Student
+              </button>
             </div>
-            <div class="form-group col-md-6">
-              <label for="studentPassword">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="studentPassword"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="studentUsername">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              id="studentUsername"
-              placeholder="Username"
-            />
-          </div>
-          <div class="form-group">
-            <label for="majorID">Major ID</label>
-            <input
-              type="number"
-              class="form-control"
-              id="majorID"
-              placeholder="Major ID"
-            />
-          </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="addStudent()"
-            >
-              Add Student
-            </button>
-          </div>
-        </form>
+          </form>
         </div>
       </main>
 
@@ -314,15 +313,54 @@
     />
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Check for token in local storage
         var token = localStorage.getItem("jwtToken");
-
-        // If token is not present, redirect to login.html
+        console.log(token);
         if (!token) {
           window.location.href = "login.html";
         }
+
+        var claims = parseJwt(token);
+
+        if (
+          claims[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] != "Admin"
+        ) {
+          console.log("Role claim isn't; 'Admin', attempting redirection...");
+          setTimeout(function () {
+            console.log("Redirecting to Admin.html...");
+            window.location.href = "/index.html";
+          }, 0);
+        } else {
+          console.log("Login Successful");
+        }
+        function parseJwt(token) {
+          try {
+            if (!token) {
+              console.log("JWT Token is empty or undefined");
+              return null;
+            }
+
+            var base64Url = token.split(".")[1];
+            var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            var jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            return JSON.parse(jsonPayload);
+          } catch (error) {
+            console.error("Error parsing JWT:", error);
+            return null;
+          }
+        }
       });
     </script>
+
     <script src="./js/JWT.js"></script>
     <script src="./js/AddStudent.js"></script>
     <script src="./js/AddAdmin.js"></script>
