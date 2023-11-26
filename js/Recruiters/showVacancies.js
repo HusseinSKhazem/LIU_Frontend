@@ -15,7 +15,7 @@ function createVacancyCard(vacancy) {
           
           <div class="button-container">
             <button class="btn btn-info update-button">Update</button>
-            <button class="btn btn-danger delete-button">Delete</button>
+            <button class="btn btn-danger delete-button" onclick="deleteVacancy(${vacancy.vacancyId})">Delete</button>
           
           </div>
         </div>
@@ -58,6 +58,31 @@ async function displayVacancies() {
   }
 }
 
+async function deleteVacancy(vacancyId) {
+  try {
+    const jwtToken = localStorage.getItem('jwtToken');
+    console.log(vacancyId)
+
+    const response = await fetch(`https://localhost:44346/api/Recruiter/DeleteVacancy/${vacancyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      showMessageBanner('Vacancy deleted successfully.', 'success');
+      location.reload();
+    } else {
+      showMessageBanner(`Error deleting vacancy: ${response.status} - ${response.statusText}`, 'error');
+    }
+  } catch (error) {
+    console.error(`Error deleting vacancy with ID ${vacancyId}:`, error);
+  }
+}
+
+
 window.onload = displayVacancies;
 
 
@@ -84,4 +109,14 @@ function parseJwt(token) {
     console.error("Error parsing JWT:", error);
     return null;
   }
+}
+
+
+function showMessageBanner(message, type) {
+  const messageBanner = document.getElementById('messageBanner');
+  messageBanner.textContent = message;
+  messageBanner.className = `alert ${type}`;
+  setTimeout(() => {
+    messageBanner.textContent = '';
+  }, 5000);
 }
