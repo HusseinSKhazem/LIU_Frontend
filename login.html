@@ -93,7 +93,15 @@ async function performLogin() {
           console.log("Redirecting to Admin.html...");
           window.location.href = "/Admin.html";
         }, 0);
-      } else {
+      } 
+      else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Recruiter") {
+        console.log("Role claim is 'Recruiter', attempting redirection...");
+        setTimeout(function () {
+          console.log("Redirecting to RecruiterPanel.html...");
+          window.location.href = "/RecruiterPanel.html";
+        }, 0);
+      }
+      else {
         console.log("Login Not Successful");
       }
     } else if (response.status === 400) {
