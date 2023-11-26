@@ -21,6 +21,7 @@ async function postVacancy(event) {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
+                  "Authorization": `Bearer ${jwtToken}`
               },
               body: JSON.stringify(formData),
           });
