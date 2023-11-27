@@ -14,9 +14,7 @@ function createVacancyCard(vacancy) {
           </div>
           
           <div class="button-container">
-            <button class="btn btn-info update-button">Update</button>
             <button class="btn btn-danger delete-button" onclick="deleteVacancy(${vacancy.vacancyId})">Delete</button>
-          
           </div>
         </div>
       </div>
