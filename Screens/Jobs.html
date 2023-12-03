@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Add your custom styles here */
+    body {
+      background-color: #F2F2EB;
+    }
+    .container {
+      margin-top: 50px;
+    }
+
+    .card {
+      border: 3px solid;
+      border-radius: 15px;
+    }
+
+    .card-title {
+      font-style: italic;
+    }
+
+    .card-text {
+      margin-bottom: 10px;
+    }
+
+    .apply-btn {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .apply-btn:hover {
+      background-color: #218838;
+    }
+
+    .comments-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .comments-link {
+      color: #007bff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .comments-link:hover {
+      color: #0056b3;
+    }
+
+    .comments-icon {
+      margin-right: 5px;
+    }
+
+    .comment-input {
+      width: 100%;
+      padding: 5px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .post-comment-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-top: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .post-comment-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <title>Vacancy Filter</title>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="text-center mb-4">Vacancy Filter</h1>
+
+  <!-- Major selection dropdown -->
+  <div class="form-group">
+    <label for="majorSelect">Select Major:</label>
+    <select id="majorSelect" class="form-control">
+      <option value="1">Computer Engineering</option>
+      <option value="2">Communication Engineering</option>
+      <option value="3">Electronics Engineering</option>
+      <option value="4">Industrial Engineering</option>
+      <option value="5">Mechanical Engineering</option>
+      <option value="6">Computer Science</option>
+      <option value="7">IT and Networking</option>
+    </select>
+  </div>
+  <!-- Vacancy list container -->
+  <div id="vacancyList" class="animate__animated animate__fadeIn"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+  // Function to fetch and display vacancies based on selected major
+  function getVacanciesByMajor(majorId) {
+    const apiUrl = `https://localhost:44346/api/Student/GetVacancyByMajor/${majorId}`;
+
+    $.get(apiUrl, function (data) {
+      // Clear previous vacancy list
+      $('#vacancyList').empty();
+
+      // Check if there are vacancies
+      if (data.length > 0) {
+        // Iterate through vacancies and display them
+        data.forEach(vacancy => {
+          const vacancyCard = `
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">${vacancy.jobOffer}</h5>
+                <p class="card-text">${vacancy.description}</p>
+                <p class="card-text">Requirements: ${vacancy.requirements}</p>
+                <p class="card-text">Recruiter: ${vacancy.recruiterUsername}</p>
+                <button class="apply-btn">Apply</button>
+                <div class="comments-section">
+                  <a href="#" class="comments-link">
+                    <span class="comments-icon">&#x1F4AC;</span>Comments
+                  </a>
+                  <input type="text" class="comment-input" placeholder="Add a comment">
+                  <button class="post-comment-btn ml-3">💬</button>
+                </div>
+              </div>
+            </div>
+          `;
+          $('#vacancyList').append(vacancyCard);
+        });
+      } else {
+        // Display a message if no vacancies are found
+        $('#vacancyList').html('<p>No vacancies available for the selected major.</p>');
+      }
+    });
+  }
+
+  // Event listener for major selection change
+  $('#majorSelect').change(function () {
+    const selectedMajorId = $(this).val();
+    getVacanciesByMajor(selectedMajorId);
+  });
+
+  // Initial load with the first major's vacancies
+  getVacanciesByMajor($('#majorSelect').val());
+</script>
+
+
+
+</body>
+</html>
