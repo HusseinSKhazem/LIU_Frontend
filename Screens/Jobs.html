@@ -137,7 +137,7 @@
                 <p class="card-text">${vacancy.description}</p>
                 <p class="card-text">Requirements: ${vacancy.requirements}</p>
                 <p class="card-text">Recruiter: ${vacancy.recruiterUsername}</p>
-                <button class="apply-btn">Apply</button>
+                <button class="apply-btn" data-toggle="modal" data-target="#applicationModal" onclick="showApplicationModal(${vacancy.vacancyId})">Apply</button>
                 <div class="comments-section">
                   <a href="#" class="comments-link">
                     <span class="comments-icon">&#x1F4AC;</span>Comments
@@ -167,6 +167,94 @@
   getVacanciesByMajor($('#majorSelect').val());
 </script>
 
+<script>
+  // Function to show the application modal
+  function showApplicationModal(vacancyId) {
+    // Create the modal HTML
+    const modalHTML = `
+      <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="applicationModalLabel">Apply for the Vacancy</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="applicationForm">
+                <div class="form-group">
+                  <label for="cvFile">Upload CV:</label>
+                  <input type="file" class="form-control-file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+                </div>
+                <input type="hidden" id="vacancyId" name="vacancyId" value="${vacancyId}">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="submitApplication()">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Append the modal HTML to the body
+    $('body').append(modalHTML);
+
+    // Show the modal
+    $('#applicationModal').modal('show');
+  }
+
+  // Function to submit the application
+  function submitApplication() {
+  const email = encodeURIComponent('12110243@students.liu.edu.lb');
+  const vacancyId = $('#vacancyId').val();
+  const formData = new FormData($('#applicationForm')[0]);
+
+  $.ajax({
+    url: `https://localhost:44346/api/Student/Apply?Email=${email}`,
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      // Display a success banner at the top of the page
+      const successBanner = `
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          ${response}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      `;
+
+      // Append the success banner to the container
+      $('.container').prepend(successBanner);
+
+      // Close the modal
+      $('#applicationModal').modal('hide');
+    },
+    error: function (error) {
+      // Display a danger banner at the top of the page
+      const dangerBanner = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Application wasn't sent. Please try again.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      `;
+
+      // Append the danger banner to the container
+      $('.container').prepend(dangerBanner);
+
+      // Close the modal
+      $('#applicationModal').modal('hide');
+    }
+  });
+}
+</script>
 
 
 </body>
