@@ -84,7 +84,6 @@ async function performLogin() {
     if (response.ok) {
       var jwtToken = await response.text();
       localStorage.setItem("jwtToken", jwtToken);
-      console.log("JWT Token:", jwtToken);
 
       var claims = parseJwt(jwtToken);
       if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Admin") {
@@ -99,6 +98,19 @@ async function performLogin() {
         setTimeout(function () {
           console.log("Redirecting to RecruiterPanel.html...");
           window.location.href = "/RecruiterPanel.html";
+        }, 0);
+      }else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Student") {
+        console.log("Role claim is 'student', attempting redirection...");
+        setTimeout(function () {
+          console.log("Redirecting to JobsPortal.html...");
+          window.location.href = "/jobportal.html";
+        }, 0);
+      }
+      else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Instructor") {
+        console.log("Role claim is 'Instructor', attempting redirection...");
+        setTimeout(function () {
+          console.log("Redirecting to JobsPortal.html...");
+          window.location.href = "/jobportal.html";
         }, 0);
       }
       else {

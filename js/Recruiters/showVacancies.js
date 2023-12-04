@@ -8,6 +8,7 @@ function createVacancyCard(vacancy) {
           <p class="card-text"><strong>Status:</strong> ${vacancy.status}</p>
           <p class="card-text"><strong>Requirements:</strong> ${vacancy.requirements}</p>
           <p class="card-text"><strong>Working Hours:</strong> ${vacancy.workingHours}</p>
+          <p class="card-text"><strong>Company Name:</strong> ${vacancy.companyName}</p>
           <p class="card-text"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
           <div class="description-container">
             <p class="card-text description">${vacancy.description}</p>
