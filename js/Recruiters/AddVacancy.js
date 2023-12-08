@@ -1,49 +1,53 @@
 async function postVacancy(event) {
   try {
-      event.preventDefault(); 
+    event.preventDefault();
 
-      var jwtToken = localStorage.getItem("jwtToken");
-      console.log(jwtToken)
-      var claims = parseJwt(jwtToken);
-      if (claims && claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]) {
+    var jwtToken = localStorage.getItem("jwtToken");
+    console.log(jwtToken);
+    var claims = parseJwt(jwtToken);
+    if (claims && claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]) {
+      var formData = {
+        recruiterEmail: claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+        status: document.getElementById('status').value,
+        description: document.getElementById('description').value,
+        requirements: document.getElementById('requirements').value,
+        workingHours: parseInt(document.getElementById('workingHours').value),
+        jobOffer: document.getElementById('jobOffer').value,
+        majorID: $("#majorFilter").val(),
+        workLocation: document.getElementById('workLocation').value,
+        salary: parseInt(document.getElementById('salary').value),
+        experience: document.getElementById('experience').value,
+        Responsibility: document.getElementById('Responsibility').value,
+      };
 
-          var formData = {
-              recruiterEmail: claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
-              status: document.getElementById('status').value,
-              description: document.getElementById('description').value,
-              requirements: document.getElementById('requirements').value,
-              workingHours: parseInt(document.getElementById('workingHours').value),
-              jobOffer: document.getElementById('jobOffer').value,
-              majorID: parseInt(document.getElementById('majorID').value)
-          };
+      const response = await fetch('https://localhost:44346/api/Recruiter/PostVacancy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify(formData),
+      });
 
-          const response = await fetch('https://localhost:44346/api/Recruiter/PostVacancy', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  "Authorization": `Bearer ${jwtToken}`
-              },
-              body: JSON.stringify(formData),
-          });
+      const responseData = await response.text();
+      console.log("Response Data:", responseData);
 
-          const responseData = await response.text();
-          console.log("Response Data:", responseData);
-
-          if (response.status >= 200 && response.status < 300) {
-              alert('Vacancy Posted Successfully!');
-          } else {
-              console.log("Error:", response.status, response.statusText);
-              alert("Error posting vacancy. Please check the console for details.");
-          }
+      if (response.status >= 200 && response.status < 300) {
+        alert('Vacancy Posted Successfully!');
       } else {
-          console.log("JWT Token is missing or invalid");
-          alert("Error: JWT Token is missing or invalid. Please log in.");
+        console.log("Error:", response.status, response.statusText);
+        alert("Error posting vacancy. Please check the console for details.");
       }
+    } else {
+      console.log("JWT Token is missing or invalid");
+      alert("Error: JWT Token is missing or invalid. Please log in.");
+    }
   } catch (error) {
-      console.error("An error occurred during postVacancy:", error);
-      alert("An unexpected error occurred. Please check the console for details.");
+    console.error("An error occurred during postVacancy:", error);
+    alert("An unexpected error occurred. Please check the console for details.");
   }
 }
+
 
 function parseJwt(token) {
   try {

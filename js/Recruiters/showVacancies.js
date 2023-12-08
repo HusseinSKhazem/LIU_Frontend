@@ -1,56 +1,42 @@
-function createVacancyCard(vacancy) {
+function createVacancyRow(vacancy) {
   return `
-    <div class="col-lg-6 col-md-8 mb-4">
-      <div class="card vacancy-card">
-        <div class="card-body">
-          <h5 class="card-title job-offer">${vacancy.jobOffer}</h5>
-          <p class="card-text"><strong>Major:</strong> ${vacancy.majorName}</p>
-          <p class="card-text"><strong>Status:</strong> ${vacancy.status}</p>
-          <p class="card-text"><strong>Requirements:</strong> ${vacancy.requirements}</p>
-          <p class="card-text"><strong>Working Hours:</strong> ${vacancy.workingHours}</p>
-          <p class="card-text"><strong>Company Name:</strong> ${vacancy.companyName}</p>
-          <p class="card-text"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-          <div class="description-container">
-            <p class="card-text description">${vacancy.description}</p>
-          </div>
-          
-          <div class="button-container">
-            <button class="btn btn-danger delete-button" onclick="deleteVacancy(${vacancy.vacancyId})">Delete</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
+  <tr>
+            <td>${vacancy.jobOffer}</td>
+            <td>${vacancy.majorName}</td>
+            <td>${vacancy.status}</td>
+            <td>${vacancy.workingHours}</td>
+            <td>${vacancy.companyName}</td>
+            <td>${vacancy.recruiterUsername}</td>
+            <td>
+                <button class="btn btn-danger" onclick="deleteVacancy(${vacancy.vacancyId})">Delete</button>
+            </td>
+        </tr>
+`;
 }
-
 
 async function displayVacancies() {
   const vacancyListContainer = document.getElementById('vacancyList');
 
   try {
-     
-       
       const jwtToken = localStorage.getItem('jwtToken');
       var claims = parseJwt(jwtToken);
       var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
       const response = await fetch(`https://localhost:44346/api/Recruiter/VacancyList/${email}`, {
-        headers: {
-          'Authorization': `Bearer ${jwtToken}`,
-          'Content-Type': 'application/json', 
-        },
+          headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+              'Content-Type': 'application/json',
+          },
       });
       const vacanciesData = await response.json();
 
-     
       if (vacanciesData.length > 0) {
-    
           vacanciesData.forEach(vacancy => {
-              const vacancyCard = createVacancyCard(vacancy);
-              vacancyListContainer.innerHTML += vacancyCard;
+              const vacancyRow = createVacancyRow(vacancy);
+              vacancyListContainer.innerHTML += vacancyRow;
           });
       } else {
-          vacancyListContainer.innerHTML = '<p>No vacancies found.</p>';
+          vacancyListContainer.innerHTML = '<tr><td colspan="9">No vacancies found.</td></tr>';
       }
   } catch (error) {
       console.error('Error fetching data:', error);

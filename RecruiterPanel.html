@@ -13,6 +13,9 @@
     crossorigin="anonymous"
   />
     <title>Recruiter Panel</title>
+    <style>
+      
+    </style>
 </head>
 
 <body>
@@ -95,10 +98,42 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="majorID">Major ID:</label>
-                        <input type="number" class="form-control" id="majorID" name="majorID" required>
+                      <label for="majorFilter">Major:</label>
+                      <select id="majorFilter">
+                          <!-- options will be populated dynamically -->
+                      </select>
                     </div>
 
+                    <div class="form-group">
+                      <label for="locationFilter">Location:</label>
+                        <select id="locationFilter" onchange="">
+                            <option value="Beirut">Beirut</option>
+                            <option value="Tripoli">Tripoli</option>
+                            <option value="Tyre">Tyre</option>
+                            <option value="Saida">Saida</option>
+                            <option value="Saida">Nabatieh</option>
+                            <option value="Bekaa">Bekaa</option>
+                        </select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="salary">Salary:</label>
+                      <input type="number" class="form-control" id="salary" name="salary" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="experience">Experience:</label>
+                      <input type="text" class="form-control" id="experience" name="experience" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="Responsibility">Responsibility:</label>
+                      <textarea class="form-control" id="Responsibility" name="Responsibility" required></textarea>
+                  </div>
+                  
+                  <!-- Add space below the form -->
+                  <div class="form-group mb-4"></div>
+                  
                     <!-- Add space below the form -->
                     <div class="form-group mb-4"></div>
 
@@ -113,6 +148,7 @@
         </main>
 
     </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
           var token = localStorage.getItem("jwtToken");
@@ -163,7 +199,9 @@
         });
       </script>
       <script src="./js/JWT.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script src="./js/Filters/majorFilling.js"></script>
+     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
