@@ -103,14 +103,14 @@ async function performLogin() {
         console.log("Role claim is 'student', attempting redirection...");
         setTimeout(function () {
           console.log("Redirecting to JobsPortal.html...");
-          window.location.href = "/jobportal.html";
+          window.location.href = "../Screens/JobPortal.html";
         }, 0);
       }
       else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Instructor") {
         console.log("Role claim is 'Instructor', attempting redirection...");
         setTimeout(function () {
           console.log("Redirecting to JobsPortal.html...");
-          window.location.href = "/jobportal.html";
+          window.location.href = "../Screens/JobPortal.html";
         }, 0);
       }
       else {
