@@ -10,11 +10,31 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="../css/profile.css">
+  <style>
+    .alert {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+
+    .alert-error {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+  </style>
     <title>Document</title>
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
         <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+            <a class="nav-link active ms-0" href="." target="__blank">Profile</a>
+            <a class="nav-link  ms-0" href="./JobOffers.html" >Jobs</a>
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">
@@ -49,7 +69,7 @@
             <div class="col-xl-8">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Account Details</div>
+                    <div class="card-header">E-Resume</div>
                     <div class="card-body">
                         <form>
                             <!-- Form Group (username)-->
@@ -110,23 +130,21 @@
                                 </div>
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <button class="btn btn-primary" type="button" onclick="saveChanges()">Save changes</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div id="messageBanner" class="alert" role="alert"></div>
 </head>
 <body>
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/profileController/profile.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"
-></script>
+    <script src="../js/profileController/updateProfile.js"></script>
+
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -143,6 +161,94 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
 <script>
+    function saveChanges() {
+        // Fetch values from form fields
+        var username = document.getElementById('inputUsername').value;
+        var email = document.getElementById('Email').value;
+        var socials = document.getElementById('Socials').value;
+        var orgName = document.getElementById('inputOrgName').value;
+        var location = document.getElementById('inputLocation').value;
+        var description = document.getElementById('Description').value;
+        var phone = document.getElementById('inputPhone').value;
+        var workExperience = document.getElementById('WorkExperience').value;
+        var education = document.getElementById('educationalBackground').value;
+        var projects = document.getElementById('projects').value;
+
+        var apiData = {
+            "location": location,
+            "socials": socials,
+            "projects": projects,
+            "name": username,
+            "description": description,
+            "email": email,
+            "phoneNumber": phone,
+            "educationalBackground": education,
+            "workExperience": workExperience,
+            "skills": "string" 
+        };
+
+        fetch('https://localhost:44346/api/Resume/UpdateResume?Email=12110243%40students.liu.edu.lb', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(apiData),
+        })
+        .then(response => {
+            if (response.ok) {
+                showSuccessBanner("Student added successfully!");
+                location.reload();
+            } else {
+                showErrorBanner('Something went Wrong');
+            }
+        })
+        .then(data => {
+            console.log('API Response:', data);
+            // Handle success or show a confirmation message
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error or show an error message
+        });
+
+        function showMessageBanner(message, type) {
+        const messageBanner = document.getElementById('messageBanner');
+        messageBanner.textContent = message;
+        messageBanner.className = `alert ${type}`;
+        setTimeout(() => {
+            messageBanner.textContent = '';
+        }, 5000);
+}
+    }
+    function showErrorBanner(message) {
+  var alertDiv = document.createElement("div");
+  alertDiv.className = "alert alert-danger";
+  alertDiv.innerHTML = message;
+
+  document.body.insertBefore(alertDiv, document.body.firstChild);
+  setTimeout(function () {
+    alertDiv.remove();
+  }, 3000);
+}
+
+function showSuccessBanner(message) {
+  // Create a success alert
+  var alertDiv = document.createElement("div");
+  alertDiv.className = "alert alert-success";
+  alertDiv.innerHTML = message;
+
+  // Append the alert to the top of the body
+  document.body.insertBefore(alertDiv, document.body.firstChild);
+
+  // Remove the alert after 3 seconds (adjust the timeout as needed)
+  setTimeout(function () {
+    alertDiv.remove();
+  }, 3000);
+}
+
+</script>
+
+<script>
             document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
@@ -151,7 +257,10 @@
                 const file = fileInput.files[0];
 
                 if (file) {
-                    const email = encodeURIComponent('12110243@students.liu.edu.lb');
+                    const jwtToken = localStorage.getItem('jwtToken');
+                    var claims = parseJwt(jwtToken);
+                    var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+                    const email = encodeURIComponent(Email);
                     const apiUrl = `https://localhost:44346/api/User/UpdateProfilePicture?Email=${email}`;
 
                     const formData = new FormData();
@@ -167,6 +276,33 @@
                 }
             }
         });
+
+        function parseJwt(token) {
+  try {
+    if (!token) {
+      console.log("JWT Token is empty or undefined");
+      return null;
+    }
+
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error("Error parsing JWT:", error);
+    return null;
+  }
+}
+
+
 </script>
 </body>
 </html>
