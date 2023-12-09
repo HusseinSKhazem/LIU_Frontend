@@ -45,27 +45,73 @@ function removeProject() {
     }
 }
 
-function submitForm(event) {
+async function submitForm(event) {
     event.preventDefault();
-    
-   
+
+    const jwtToken = localStorage.getItem('jwtToken');
+    var claims = parseJwt(jwtToken);
+    var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+
+
     const skillsInputs = document.querySelectorAll('input[name="skills[]"]');
     const skills = Array.from(skillsInputs).map(input => input.value).filter(skill => skill.trim() !== '');
-    const skillsField = document.createElement('input');
-    skillsField.type = 'hidden';
-    skillsField.name = 'skills';
-    skillsField.value = skills.join(', ');
-    event.target.appendChild(skillsField);
 
-    
     const projectsInputs = document.querySelectorAll('input[name="projects[]"]');
     const projects = Array.from(projectsInputs).map(input => input.value).filter(project => project.trim() !== '');
-    const projectsField = document.createElement('input');
-    projectsField.type = 'hidden';
-    projectsField.name = 'projects';
-    projectsField.value = projects.join(', ');
-    event.target.appendChild(projectsField);
 
-    event.target.submit();
+    const formData = {
+        location: document.getElementById('location').value,
+        socials: document.getElementById('socials').value,
+        projects: projects.join(', '),
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value,
+        email: document.getElementById('email').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        educationalBackground: document.getElementById('educationalBackground').value,
+        workExperience: document.getElementById('workExperience').value,
+        skills: skills.join(', ')
+    };
+
+    
+    const response = await fetch(`https://localhost:44346/api/Resume/AddResume?Email=${encodeURIComponent(email)}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    });
+
+
+    if (response.ok) {
+        console.log('Resume added successfully');
+     
+    } else {
+        console.error('Failed to add resume', response.statusText);
+
+    }
 }
 
+function parseJwt(token) {
+    try {
+      if (!token) {
+        console.log("JWT Token is empty or undefined");
+        return null;
+      }
+
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      var jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error("Error parsing JWT:", error);
+      return null;
+    }
+  }
