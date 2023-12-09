@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="../css/profile.css">
+    <title>Document</title>
+    <div class="container-xl px-4 mt-4">
+        <!-- Account page navigation-->
+        <nav class="nav nav-borders">
+            <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+        </nav>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center" id="profileData">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" id="profilePicture" src="" alt="">
+                        <!-- Profile picture help block-->
+                        <div class="font-weight-bold font-italic text-muted mb-4" id="Username">Username</div>
+                        <div class="font-weight-bold font-italic text-muted mb-4" id="ProfileEmail">Email</div>
+                        <!-- Profile picture upload button-->
+                        <label class="btn btn-outline btn-warning">
+                            <input type="file" id="fileInput" />
+                            Change Picture
+                        </label>
+                        <div class="mb-3 mt-3">
+                            <label class="h6 mb-1" for="bio">Bio:</label>
+                            <input class="form-control" id="bio" type="text" placeholder="Your Bio Info" value="">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label class="h6 mb-1" for="link">Link:</label>
+                            <input class="form-control" id="link" type="text" placeholder="Links" value="">
+                        </div>
+                        <button class="btn btn-success" type="button" id="saveChangesBtn">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Form Group (username)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="Email">Email</label>
+                                    <input class="form-control" id="Email" type="email" placeholder="Enter your first name" value="Valerie">
+                                </div>
+                                <!-- Form Group (last name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="Socials">Socials</label>
+                                    <input class="form-control" id="Socials" type="text" placeholder="Enter your Socials" value="Luna">
+                                </div>
+                            </div>
+                            <!-- Form Row        -->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (organization name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputOrgName">Organization name</label>
+                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                                </div>
+                                <!-- Form Group (location)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputLocation">Location</label>
+                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                                </div>
+                            </div>
+                            <!-- Form Group (email address)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="Description">Description</label>
+                                <input class="form-control" class="desc" id="Description" type="text" placeholder="Enter your email address" value="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (phone number)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputPhone">Phone number</label>
+                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                                </div>
+                                <!-- Form Group (birthday)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="WorkExperience">WorkExperience</label>
+                                    <input class="form-control" id="WorkExperience" type="text" name="WorkExperience" placeholder="Enter your WorkExperience" value="06/10/1988">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="educationalBackground">educationalBackground</label>
+                                    <input class="form-control" id="educationalBackground" type="text" name="WorkExperience" placeholder="Enter your WorkExperience" value="06/10/1988">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="projects">projects</label>
+                                    <input class="form-control" id="projects" type="text" name="projects" placeholder="Enter your projects" value="06/10/1988">
+                                </div>
+                            </div>
+                            <!-- Save changes button-->
+                            <button class="btn btn-primary" type="button">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/profileController/profile.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"
+></script>
+<!-- Animate.css CDN link -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<script>
+            document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+            function handleFileSelect(event) {
+                const fileInput = event.target;
+                const file = fileInput.files[0];
+
+                if (file) {
+                    const email = encodeURIComponent('12110243@students.liu.edu.lb');
+                    const apiUrl = `https://localhost:44346/api/User/UpdateProfilePicture?Email=${email}`;
+
+                    const formData = new FormData();
+                    formData.append('ProfilePicture', file);
+
+                    fetch(apiUrl, {
+                        method: 'PUT',
+                        body: formData,
+                    })
+                    .then(response => {
+                        location.reload();
+                    })
+                }
+            }
+        });
+</script>
+</body>
+</html>
