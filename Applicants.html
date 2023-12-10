@@ -235,7 +235,15 @@
           row.insertCell().innerHTML = application.status;
           row.insertCell().innerHTML = application.datetime;
           row.insertCell().innerHTML = student.numberOfRecommendations; // Display numberOfRecommendations`
-          row.insertCell().innerHTML = student.username; // Display username
+          var acceptButton = document.createElement('button');
+          acceptButton.className = 'btn btn-success';
+          acceptButton.innerHTML = 'Accept';
+          acceptButton.onclick = function () {
+
+    var applicationID = application.applicationId; 
+    acceptApplication(applicationID);
+  };
+  row.insertCell().appendChild(acceptButton); 
           var cvLink = $('<a>', {
             href: './Screens/studentResume.html?email=' + encodeURIComponent(student.email),
             text: 'View CV',
@@ -316,6 +324,47 @@ row.insertCell().innerHTML = cvLink.prop('outerHTML');
         vacancySelect.addEventListener("change", handleVacancySelectChange);
       };
 
+      function acceptApplication(applicationID) {
+  var jwtToken = localStorage.getItem('jwtToken');
+
+  var apiUrl = 'https://localhost:44346/api/Recruiter/AcceptApplication?applicationID=' + applicationID;
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${jwtToken}`,
+    },
+  })
+    .then(response => response.json())  // Parse the response as JSON
+    .then(data => {
+      if (data === 1) {
+        showBanner("Acceptance Email Was sent Successfully", true)
+      } else {
+        console.error('Error accepting application');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+function showBanner(message, isSuccess) {
+    const bannerType = isSuccess ? 'success' : 'danger';
+
+    const banner = `
+      <div class="container mt-3 mr-5">
+        <div class="alert alert-${bannerType} alert-dismissible fade show" role="alert">
+          ${message}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('afterbegin', banner);
+  }
       // Parse JWT function
       function parseJwt(token) {
         try {
