@@ -39,7 +39,7 @@ function fetchAndDisplayJobListings(majorID) {
              
                 response.forEach(function(vacancy) {
                     var cardHtml = `
-                    <div class="card job-card">
+                    <div class="card job-card" data-vacancy-id="${vacancy.vacancyId}">
                         <div class="job-card-body">
                             <h5 class="job-title">${vacancy.jobOffer}</h5>
                             <p class="job-info"><i class="fas fa-building job-icon"></i> ${vacancy.companyName}</p>
@@ -59,14 +59,14 @@ function fetchAndDisplayJobListings(majorID) {
                             <button class="btn btn-success">Apply</button>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
-                                <input type="text" id="commentInput" placeholder="Add a comment...">
-                                <button>Add Comment</button>
-                            </div>
+    <input type="text" class="comment-input" placeholder="Add a comment...">
+    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+</div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-                                <a href="#">See All Comments</a>
-                            </div>
+    <a href="#" class="see-all-comments-link">See All Comments</a>
+</div>
                         </div>
                     </div>`;
                 
@@ -106,7 +106,7 @@ function fetchAndDisplayJobByLocation() {
                 // Loop through the response and append job cards to the job listing column
                 response.forEach(function(vacancy) {
                     var cardHtml = `
-                    <div class="card job-card">
+                    <div class="card job-card" data-vacancy-id="${vacancy.vacancyId}">
                         <div class="job-card-body">
                             <h5 class="job-title">${vacancy.jobOffer}</h5>
                             <p class="job-info"><i class="fas fa-building job-icon"></i> ${vacancy.companyName}</p>
@@ -126,14 +126,14 @@ function fetchAndDisplayJobByLocation() {
                             <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
-                                <input type="text" id="commentInput" placeholder="Add a comment...">
-                                <button>Add Comment</button>
-                            </div>
+    <input type="text" class="comment-input" placeholder="Add a comment...">
+    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+</div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-                                <a href="#">See All Comments</a>
-                            </div>
+    <a href="#" class="see-all-comments-link">See All Comments</a>
+</div>
                         </div>
                     </div>`;
                 
@@ -164,16 +164,15 @@ function fetchAndDisplayJobBySalary() {
         method: "GET",
         success: function(response) {
             var jobListingColumn = $("#jobListingColumn");
-            jobListingColumn.empty(); // Clear existing job listings
+            jobListingColumn.empty(); 
 
             if (response.length === 0) {
-                // Display a message when no offers are found
+
                 jobListingColumn.append('<h2 style="color:red;">No offers were found.</h2>');
             } else {
-                // Loop through the response and append job cards to the job listing column
                 response.forEach(function(vacancy) {
                     var cardHtml = `
-                    <div class="card job-card">
+                    <div class="card job-card" data-vacancy-id="${vacancy.vacancyId}">
                     <div class="job-card-body">
                         <h5 class="job-title">${vacancy.jobOffer}</h5>
                         <p class="job-info"><i class="fas fa-building job-icon"></i> ${vacancy.companyName}</p>
@@ -193,14 +192,14 @@ function fetchAndDisplayJobBySalary() {
                         <button class="btn btn-success">Apply</button>
                         <!-- Comment Input Section -->
                         <div class="comment-input-section">
-                            <input type="text" id="commentInput" placeholder="Add a comment...">
-                            <button>Add Comment</button>
+                            <input type="text" class="comment-input" placeholder="Add a comment...">
+                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
                         </div>
             
                         <!-- See All Comments Section -->
                         <div class="see-all-comments-section">
-                            <a href="#">See All Comments</a>
-                        </div>
+                        <a href="#" class="see-all-comments-link">See All Comments</a>
+                    </div>
                     </div>
                 </div>
                     `;
@@ -210,7 +209,6 @@ function fetchAndDisplayJobBySalary() {
         },
         error: function(error) {
             if (error.status === 404) {
-                // Display a message when the API returns a 404 status (Not Found)
                 var jobListingColumn = $("#jobListingColumn");
                 jobListingColumn.empty();
                 jobListingColumn.append('<h2 style="color:red;">No offers were found.</h2>');
@@ -222,10 +220,7 @@ function fetchAndDisplayJobBySalary() {
 }
 
 
-
-// Document ready
 $(document).ready(function() {
-    // Populate majors on page load
     populateMajorOptions();
 
 });
@@ -233,7 +228,6 @@ $(document).ready(function() {
         fetchAndDisplayJobByLocation();
     });
 
-    // Add change event listener to the location filter
     $("#locationFilter").on("change", function() {
         fetchAndDisplayJobByLocation();
         var salaryValue = $("#salaryFilter").val();
@@ -250,6 +244,5 @@ $(document).ready(function() {
 
 
 
-
-
+   
 

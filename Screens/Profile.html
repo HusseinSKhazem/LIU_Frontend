@@ -166,7 +166,7 @@
         var username = document.getElementById('inputUsername').value;
         var email = document.getElementById('Email').value;
         var socials = document.getElementById('Socials').value;
-        var orgName = document.getElementById('inputOrgName').value;
+        var skills = document.getElementById('inputOrgName').value;
         var location = document.getElementById('inputLocation').value;
         var description = document.getElementById('Description').value;
         var phone = document.getElementById('inputPhone').value;
@@ -184,7 +184,7 @@
             "phoneNumber": phone,
             "educationalBackground": education,
             "workExperience": workExperience,
-            "skills": "string" 
+            "skills": skills 
         };
 
         fetch('https://localhost:44346/api/Resume/UpdateResume?Email=12110243%40students.liu.edu.lb', {
@@ -304,5 +304,110 @@ function showSuccessBanner(message) {
 
 
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var token = localStorage.getItem("jwtToken");
+      console.log(token);
+      if (!token) {
+        window.location.href = "login.html";
+      }
+
+      var claims = parseJwt(token);
+
+      if (
+        claims[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] != "Student"
+      ) {
+        console.log(
+          "Role claim isn't; 'Recruiter', attempting redirection..."
+        );
+        setTimeout(function () {
+          console.log("Redirecting to Index.html...");
+          window.location.href = "../index.html";
+        }, 0);
+      } else {
+        console.log("Login Successful");
+      }
+      function parseJwt(token) {
+        try {
+          if (!token) {
+            console.log("JWT Token is empty or undefined");
+            return null;
+          }
+
+          var base64Url = token.split(".")[1];
+          var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          var jsonPayload = decodeURIComponent(
+            atob(base64)
+              .split("")
+              .map(function (c) {
+                return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+              })
+              .join("")
+          );
+
+          return JSON.parse(jsonPayload);
+        } catch (error) {
+          console.error("Error parsing JWT:", error);
+          return null;
+        }
+      }
+    });
+  </script>
+  <script src="../js/JobPortalControllers/mainChecker.js">
+  </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var token = localStorage.getItem("jwtToken");
+          console.log(token);
+          if (!token) {
+            window.location.href = "login.html";
+          }
+  
+          var claims = parseJwt(token);
+  
+          if (
+            claims[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ] != "Student"
+          ) {
+            console.log(
+              "Role claim isn't; 'Recruiter', attempting redirection..."
+            );
+            setTimeout(function () {
+              console.log("Redirecting to Index.html...");
+              window.location.href = "../index.html";
+            }, 0);
+          } else {
+            console.log("Login Successful");
+          }
+          function parseJwt(token) {
+            try {
+              if (!token) {
+                console.log("JWT Token is empty or undefined");
+                return null;
+              }
+  
+              var base64Url = token.split(".")[1];
+              var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+              var jsonPayload = decodeURIComponent(
+                atob(base64)
+                  .split("")
+                  .map(function (c) {
+                    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                  })
+                  .join("")
+              );
+  
+              return JSON.parse(jsonPayload);
+            } catch (error) {
+              console.error("Error parsing JWT:", error);
+              return null;
+            }
+          }
+        });
+      </script>
 </body>
 </html>

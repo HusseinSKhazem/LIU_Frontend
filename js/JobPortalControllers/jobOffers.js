@@ -86,3 +86,18 @@ function parseJwt(token) {
       return null;
     }
   }
+
+
+  function centerElementInViewport(element) {
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+
+    const elementHeight = element.clientHeight;
+    const elementWidth = element.clientWidth;
+
+    const topPosition = Math.max(0, (windowHeight - elementHeight) / 2);
+    const leftPosition = Math.max(0, (windowWidth - elementWidth) / 2);
+
+    element.style.top = `${topPosition}px`;
+    element.style.left = `${leftPosition}px`;
+}
