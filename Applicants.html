@@ -219,7 +219,7 @@
         // Create table header
         var headerRow = table.createTHead().insertRow();
         headerRow.innerHTML =
-          "<th>Name</th><th>Status</th><th>Date Time</th><th>Username</th><th>Number of Recommendations</th><th>File</th>";
+          "<th>Name</th><th>Status</th><th>Date Time</th><th>Number of Recommendations</th><th>Actions</th><th>File</th>";
 
         // Create table body
         var tbody = table.createTBody();
@@ -234,17 +234,19 @@
 
           row.insertCell().innerHTML = application.status;
           row.insertCell().innerHTML = application.datetime;
+          row.insertCell().innerHTML = student.numberOfRecommendations; // Display numberOfRecommendations`
           row.insertCell().innerHTML = student.username; // Display username
-          row.insertCell().innerHTML = student.numberOfRecommendations; // Display numberOfRecommendations
-
-          // Create a link for the file that triggers file download API
-          var fileCell = row.insertCell();
-          var fileLink = document.createElement("a");
-          fileLink.href = `https://localhost:44346/api/File/DownloadFile?filename=${application.file}`;
-          fileLink.textContent = application.file;
-          fileLink.setAttribute("download", ""); // This attribute prompts the user to download the file
-          fileCell.appendChild(fileLink);
+          var cvLink = $('<a>', {
+            href: './Screens/studentResume.html?email=' + encodeURIComponent(student.email),
+            text: 'View CV',
+            target: '_blank'
         });
+        
+
+// Set the HTML content of the cell to the outer HTML of the jQuery object
+row.insertCell().innerHTML = cvLink.prop('outerHTML');
+        });
+        
 
         // Append table to the container
         tableContainer.appendChild(table);
@@ -306,6 +308,7 @@
 
       // Call the displayVacancyByEmail function when the page loads
       window.onload = function () {
+        
         displayVacancyByEmail();
 
         // Add event listener to the vacancy select dropdown
