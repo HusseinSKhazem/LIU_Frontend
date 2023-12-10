@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<style>
+   body {
+    background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 36%, rgba(205,221,239,1) 48%, rgba(81,153,230,1) 75%, rgba(0,123,255,1) 100%);
+            font-family:Verdana, Geneva, Tahoma, sans-serif
+        }
+        .resume-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 4px solid #007bff;
+            border-radius: 50%;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .card-title {
+            color: #007bff;
+        }
+        .list-group-item {
+            border: none;
+        }
+        .list-group-item strong {
+            color: #007bff;
+        }
+   
+</style>
+<body class="container mt-5">
+    <div class="resume-container">
+        <div id="resume" class="card mb-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+
+        // Fetch resume data from the API
+        fetch(`https://localhost:44346/api/Resume/GetStudentResumeByEmail?Email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                // Create the resume HTML
+                const resumeHtml = `
+                    <div class="card">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="https://localhost:44346/api/User/GetProfilePicture/${data.profilePicture.id}" class="card-img-top profile-picture" alt="Profile Picture">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">${data.name}</h5>
+                            <p class="card-text text-muted text-center">${data.description}</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Email:</strong> ${data.email}</li>
+                                <li class="list-group-item"><strong>Phone Number:</strong> ${data.phoneNumber}</li>
+                                <li class="list-group-item"><strong>Educational Background:</strong> ${data.educationalBackground}</li>
+                                <li class="list-group-item"><strong>Work Experience:</strong> ${data.workExperience}</li>
+                                <li class="list-group-item"><strong>Location:</strong> ${data.location}</li>
+                                <li class="list-group-item"><strong>Skills:</strong> ${data.skills.split(',').join(', ')}</li>
+                                <li class="list-group-item"><strong>Projects:</strong> ${data.projects.split(',').join(', ')}</li>
+                                <li class="list-group-item"><strong>Socials:</strong> ${data.socials}</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                // Append the resume HTML to the 'resume' div
+                document.getElementById('resume').innerHTML = resumeHtml;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+    </script>
+</body>
+</html>
