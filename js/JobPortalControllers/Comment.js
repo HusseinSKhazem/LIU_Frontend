@@ -30,9 +30,17 @@ function addComment(vacancyID) {
                     successAlert.style.display = 'none';
                 }, 2500);
             } else {
-                throw new Error(`Error adding comment for Vacancy ${vacancyID}. Status: ${response.status}`);
+                if (response.status === 400) {
+                    // Handle plain text response
+                    response.text().then(errorMessage => {
+                        alert(`Bad Request: ${errorMessage}`);
+                    });
+                } else {
+                    throw new Error(`Error adding comment for Vacancy ${vacancyID}. Status: ${response.status}`);
+                }
             }
         })
+        
         .then(data => {
             // Handle the text response, you can update the UI or perform other actions here
             console.log(`Comment added successfully for Vacancy ${vacancyID}:`, data);

@@ -56,7 +56,7 @@ function fetchAndDisplayJobListings(majorID) {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                            <button class="btn btn-success">Apply</button>
+                            <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
     <input type="text" class="comment-input" placeholder="Add a comment...">
@@ -189,7 +189,7 @@ function fetchAndDisplayJobBySalary() {
                         <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                         <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                         <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                        <button class="btn btn-success">Apply</button>
+                        <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
                         <!-- Comment Input Section -->
                         <div class="comment-input-section">
                             <input type="text" class="comment-input" placeholder="Add a comment...">
