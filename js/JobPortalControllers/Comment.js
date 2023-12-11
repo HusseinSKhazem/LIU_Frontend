@@ -113,12 +113,3 @@ function addComment(vacancyID) {
             });
     });
     
-    // Your existing code for major and location filters...
-    // ...
-    
-    // Document ready function
-    $(document).ready(function() {
-        populateMajorOptions();
-    });
-
-    
