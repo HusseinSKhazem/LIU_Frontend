@@ -14,7 +14,14 @@
   />
     <title>Recruiter Panel</title>
     <style>
-      
+      .banner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+    }
     </style>
 </head>
 
@@ -22,7 +29,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#" class="logo">
+        <a href="./RecruiterSearch.html" class="logo">
             <img src="./assets/Logo.png" alt="" class="LIU">
             <div class="logo-name"><span>LIU</span>Recruiter</div>
         </a>
@@ -106,7 +113,7 @@
 
                     <div class="form-group">
                       <label for="locationFilter">Location:</label>
-                        <select id="locationFilter" onchange="">
+                        <select id="workLocation" onchange="">
                             <option value="Beirut">Beirut</option>
                             <option value="Tripoli">Tripoli</option>
                             <option value="Tyre">Tyre</option>
@@ -148,7 +155,13 @@
         </main>
 
     </div>
+    <div id="successBanner" class="alert alert-success banner" role="alert">
+      <strong>Success!</strong> Your operation was successful.
+    </div>
     
+    <div id="errorBanner" class="alert alert-danger banner" role="alert">
+      <strong>Error!</strong> Something went wrong.
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
           var token = localStorage.getItem("jwtToken");

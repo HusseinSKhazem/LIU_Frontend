@@ -8,10 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
 function addSkill() {
     const skillsContainer = document.getElementById('skillsContainer');
     const newSkillInput = document.querySelector('.skill-input').cloneNode(true);
+    const newId = 'skills' + skillsContainer.children.length;
+    newSkillInput.querySelector('input').id = newId;
     newSkillInput.querySelector('input').value = '';
     const addButton = newSkillInput.querySelector('button');
-    addButton.textContent = '-'; 
-    addButton.style.backgroundColor = '#dc3545'; 
+    addButton.textContent = '-';
+    addButton.style.backgroundColor = '#dc3545';
     addButton.addEventListener('click', removeSkill);
     skillsContainer.appendChild(newSkillInput);
 }
@@ -83,10 +85,10 @@ async function submitForm(event) {
 
 
     if (response.ok) {
-        console.log('Resume added successfully');
+        showSuccessBanner("The Resume was added successfully")
      
     } else {
-        console.error('Failed to add resume', response.statusText);
+        showErrorBanner('Failed to add resume');
 
     }
 }
@@ -114,4 +116,12 @@ function parseJwt(token) {
       console.error("Error parsing JWT:", error);
       return null;
     }
+  }
+
+  function showSuccessBanner(message) {
+    $('#successBanner').html('<strong>Success!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+  }
+
+  function showErrorBanner(message) {
+    $('#errorBanner').html('<strong>Error!</strong> ' + message).fadeIn().delay(3000).fadeOut();
   }

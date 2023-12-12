@@ -33,18 +33,16 @@ async function postVacancy(event) {
       console.log("Response Data:", responseData);
 
       if (response.status >= 200 && response.status < 300) {
-        alert('Vacancy Posted Successfully!');
+        showSuccessBanner('Vacancy Posted Successfully!');
       } else {
         console.log("Error:", response.status, response.statusText);
-        alert("Error posting vacancy. Please check the console for details.");
+        showErrorBanner("Error posting vacancy");
       }
     } else {
       console.log("JWT Token is missing or invalid");
-      alert("Error: JWT Token is missing or invalid. Please log in.");
     }
   } catch (error) {
     console.error("An error occurred during postVacancy:", error);
-    alert("An unexpected error occurred. Please check the console for details.");
   }
 }
 
@@ -72,4 +70,13 @@ function parseJwt(token) {
     console.error("Error parsing JWT:", error);
     return null;
   }
+}
+
+
+function showSuccessBanner(message) {
+  $('#successBanner').html('<strong>Success!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+}
+
+function showErrorBanner(message) {
+  $('#errorBanner').html('<strong>Error!</strong> ' + message).fadeIn().delay(3000).fadeOut();
 }
