@@ -15,6 +15,16 @@
     />
     <link rel="stylesheet" href="./css/admin.css" />
   <title>Document</title>
+  <style>
+    .table-blue {
+  background-color: #fff; 
+  color: #fff;
+}
+.thead-blue {
+  background-color: #0056b3; 
+  color: #fff; 
+}
+  </style>
 </head>
 <body>
 <div class="container">
@@ -62,26 +72,19 @@
   </aside>
 
   <main>
-    <h2>Users</h2>
+    <h2>Recruiters</h2>
     <div>
-      <h3>Search Users By UserRole:</h3>
+      <h3>Search Vacancies By Recruiter:</h3>
       <hr>
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="UserRole">User Role</label>
-          <div class="d-flex justify-content-center align-items-center">
-              <select class="form-control" id="UserRole">
-                  <option value="0">Admin</option>
-                  <option value="1">Instructor</option>
-                  <option value="2">Recruiter</option>
-                  <option value="3">Student</option>
-              </select>
-              <button class="btn btn-outline-success ml-4" onclick="searchUsers()">Search</button>
+        <div class="form-group">
+            <label for="recruiterSelect">Select Recruiter:</label>
+            <select class="form-control" id="recruiterSelect"></select>
           </div>
-        </div>
       </div>
   
-      <div id="usersTableContainer">
+      <div id="vacanciesTableContainer">
+        <!-- table heade -->
       </div>
       <div class="d-flex justify-content-center align-items-center">
       <div id="paginationControls" class="controls"></div></div>
@@ -224,62 +227,9 @@
   });
 </script>
 
-
+<script src="./js/FillRecruiters.js"></script>
+<script src="./js/fillVacancies.js"></script>
   <script src="./js/JWT.js"></script>
-  <script src="./js/ListUsers.js"></script>
   <script src="./js/index.js"></script>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Animate.css CDN link -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-        var token = localStorage.getItem("jwtToken");
-        if (!token) {
-          window.location.href = "login.html";
-        }});
-  </script>
-
-  
-</body>
-</html>

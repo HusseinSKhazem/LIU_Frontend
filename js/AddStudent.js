@@ -1,10 +1,10 @@
 function addStudent() {
   console.log("Starting addStudent function");
-
+  var selectedMajorID = $("#majorFilter").val();
   var email = document.getElementById("studentEmail").value;
   var password = document.getElementById("studentPassword").value;
   var username = document.getElementById("studentUsername").value;
-  var majorID = document.getElementById("majorID").value;
+  var majorID = selectedMajorID;
 
   var data = {
     email: email,
