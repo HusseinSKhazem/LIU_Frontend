@@ -53,6 +53,44 @@
         text-decoration: underline;
         color: #c0392b;
       }
+
+      /* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: 10%;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
     </style>
   </head>
 
@@ -73,8 +111,10 @@
           <a href="./vacancies.html"><i class="bx bx-pen"></i>Vacancies</a>
         </li>
         <li class="active">
-          <a href="#"><i class="bx bx-certification"></i>Applications</a>
+          <a href="./Applicants.html"><i class="bx bx-certification"></i>Applications</a>
         </li>
+        <li class=""><a href="./Refferals.html"><i class='bx bx-group'></i>Referrals</a></li>
+        <li class=""><a href="./RecruiterSearch.html"><i class='bx bx-search'></i>Skills</a></li>
       </ul>
       <ul class="side-menu">
         <li>
@@ -121,6 +161,20 @@
           <!-- Table content will be displayed here -->
         </div>
       </main>
+      <div id="interviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Interview Date</h2>
+            <form id="interviewForm">
+                <input type="hidden" id="modalApplicationID" name="applicationID" />
+                <label for="interviewDate">Select Interview Date:</label>
+                <input type="datetime-local" id="interviewDate" name="interviewDate" required />
+                <br />
+                <button type="submit">Submit Interview</button>
+            </form>
+        </div>
+    </div>
+
     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -175,20 +229,20 @@
     </script>
     <script>
       function searchApplications(vacancyId) {
-        // Retrieve the token from local storage
+
         var token = localStorage.getItem("jwtToken");
 
-        // Check if the token is available
+     
         if (!token) {
           console.error("Authorization token not found.");
           return;
         }
 
-        // Make API request with authorization header
+      
         fetch(
           `https://localhost:44346/api/Recruiter/GetApplicationsByRecommendations?vacancyID=${vacancyId}`,
           {
-            method: "POST", // Use the appropriate HTTP method
+            method: "POST", 
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -209,32 +263,29 @@
           "applications-table-container"
         );
 
-        // Clear previous table content
         tableContainer.innerHTML = "";
 
-        // Create table element
+     
         var table = document.createElement("table");
         table.classList.add("table", "table-bordered");
-
-        // Create table header
+//table
         var headerRow = table.createTHead().insertRow();
         headerRow.innerHTML =
-          "<th>Name</th><th>Status</th><th>Date Time</th><th>Number of Recommendations</th><th>Actions</th><th>File</th>";
+          "<th>Name</th><th>Status</th><th>Date Time</th><th>Number of Recommendations</th><th>Actions</th><th>File</th><th>Interview</th>";
 
-        // Create table body
+     
         var tbody = table.createTBody();
         applications.forEach((application) => {
           var row = tbody.insertRow();
 
-          // Access nested student object
-          var student = application.student;
 
-          // Display Name
+          var student = application.student;
           row.insertCell().innerHTML = student.username;
 
           row.insertCell().innerHTML = application.status;
           row.insertCell().innerHTML = application.datetime;
-          row.insertCell().innerHTML = student.numberOfRecommendations; // Display numberOfRecommendations`
+          
+          row.insertCell().innerHTML = student.numberOfRecommendations; 
           var acceptButton = document.createElement('button');
           acceptButton.className = 'btn btn-success';
           acceptButton.innerHTML = 'Accept';
@@ -249,18 +300,70 @@
             text: 'View CV',
             target: '_blank'
         });
-        
 
-// Set the HTML content of the cell to the outer HTML of the jQuery object
 row.insertCell().innerHTML = cvLink.prop('outerHTML');
-        });
+var interviewButton = document.createElement('button');
+                interviewButton.className = 'btn btn-primary';
+                interviewButton.innerHTML = 'Interview';
+                interviewButton.onclick = function () {
+                    openInterviewModal(application.applicationId);
+                };
+                row.insertCell().appendChild(interviewButton);
+            });
         
 
-        // Append table to the container
+      
         tableContainer.appendChild(table);
       }
 
-      // Your existing JavaScript code
+      function submitInterviewForm() {
+    var applicationID = document.getElementById('modalApplicationID').value;
+    var interviewDate = document.getElementById('interviewDate').value;
+
+  
+    var apiUrl = `https://localhost:44346/api/Recruiter/Interview?date=${interviewDate}&applicationID=${applicationID}`;
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data === 1) {
+                showBanner('Interview scheduled successfully', true);
+                document.getElementById('interviewModal').style.display = 'none';
+            } else {
+                console.error('Error scheduling interview');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function openInterviewModal(applicationID) {
+   
+    var modal = document.getElementById('interviewModal');
+    var span = document.getElementsByClassName('close')[0];
+    modal.style.display = 'block';
+    span.onclick = function () {
+        modal.style.display = 'none';
+    };
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+    document.getElementById('modalApplicationID').value = applicationID;
+    document.getElementById('interviewDate').value = '';
+    document.getElementById('interviewForm').onsubmit = function (event) {
+        event.preventDefault();
+        submitInterviewForm();
+    };
+}
       async function displayVacancyByEmail() {
         const vacancyListContainer = document.getElementById("majorSelect");
 
@@ -308,18 +411,13 @@ row.insertCell().innerHTML = cvLink.prop('outerHTML');
         const vacancySelect = document.getElementById("majorSelect");
         const selectedVacancyId = vacancySelect.value;
 
-        // Check if a valid vacancy is selected
         if (selectedVacancyId) {
           searchApplications(selectedVacancyId);
         }
       }
-
-      // Call the displayVacancyByEmail function when the page loads
       window.onload = function () {
         
         displayVacancyByEmail();
-
-        // Add event listener to the vacancy select dropdown
         const vacancySelect = document.getElementById("majorSelect");
         vacancySelect.addEventListener("change", handleVacancySelectChange);
       };
@@ -336,7 +434,7 @@ row.insertCell().innerHTML = cvLink.prop('outerHTML');
       'Authorization': `Bearer ${jwtToken}`,
     },
   })
-    .then(response => response.json())  // Parse the response as JSON
+    .then(response => response.json())
     .then(data => {
       if (data === 1) {
         showBanner("Acceptance Email Was sent Successfully", true)
@@ -365,7 +463,7 @@ function showBanner(message, isSuccess) {
 
     document.body.insertAdjacentHTML('afterbegin', banner);
   }
-      // Parse JWT function
+
       function parseJwt(token) {
         try {
           if (!token) {
@@ -391,7 +489,7 @@ function showBanner(message, isSuccess) {
         }
       }
 
-      // Call the displayVacancies function when the page loads
+
       window.onload = displayVacancies;
     </script>
     <script src="./js/JWT.js"></script>
