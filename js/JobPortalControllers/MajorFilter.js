@@ -76,7 +76,6 @@ function fetchAndDisplayJobListings(majorID) {
         },
         error: function(error) {
             if (error.status === 404) {
-                // Display a message when the API returns a 404 status (Not Found)
                 var jobListingColumn = $("#jobListingColumn");
                 jobListingColumn.empty();
                 jobListingColumn.append('<h2 style={color:red;}>No offers were found.</h2>');
@@ -198,7 +197,7 @@ function fetchAndDisplayJobBySalary() {
             
                         <!-- See All Comments Section -->
                         <div class="see-all-comments-section">
-                        <a href="#" class="see-all-comments-link">See All Comments</a>
+                        <a href="#" class="see-all-comments-link ">See All Comments</a>
                     </div>
                     </div>
                 </div>
@@ -240,6 +239,10 @@ $(document).ready(function() {
         fetchAndDisplayJobBySalary();
     });
     
+    $("#AllFilter").on("click", function() {
+        var selectedMajorID = $("#majorFilter").val();
+        fetchAndDisplayJobListings(selectedMajorID);
+      });
 
 
 
