@@ -1,0 +1,133 @@
+body{
+    background-color: #0c2542;
+  }
+
+    .wrapper {
+    min-height: 100vh;
+  }
+
+  .welcome-paragraph {
+    font-size: 2rem;
+    font-family: 'Kanit', sans-serif;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  color:#ffb019;
+
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border: 4px solid #ffb019;
+    border-radius: 15px;
+  }
+
+
+ 
+  nav{
+      background-color: #0c2542;
+      font-size: 1.2em;
+  }
+  .navbar-toggler-icon{
+      background-color: white;
+      color: #ffb019;
+  }
+  
+/* Styling for the Our Statistics Heading */
+.row .text-center h2 {
+color: #333;
+}
+.top{
+border-bottom: 3px solid #0c2542;
+}
+
+/* Responsive Margin for Cards */
+@media (max-width: 767px) {
+.col-md-3 {
+  margin-bottom: 20px;
+}
+}
+.videoBox {
+          position: relative;
+          width: 100%;
+          height: 100vh; 
+          overflow: hidden;
+      }
+
+      video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+
+      .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #0c254282; /* Adjust the opacity as needed */
+      }
+
+      .text-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          color: #0c2542;
+          font-family: 'Kanit', sans-serif;
+          font-size: 3rem;
+          text-shadow: 2px 2px 4px #ffb019;
+        
+      }
+
+      .card {
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        height: 100%;
+        border: 6px solid #ffb019;
+      }
+
+  
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 8px 8px 0px #ffb019;
+      }
+  
+      .card-body {
+        text-align: center;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+  
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #ffb019;
+      }
+  
+      .card-text {
+        font-size: 1.3em;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .first-text{
+        font-size: 2em;
+        margin-bottom: 10px;
+        color: #ffb019;
+      }
