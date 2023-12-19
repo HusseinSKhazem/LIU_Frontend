@@ -10,7 +10,7 @@ function displayRecruitersTable(recruiters) {
   table.className = "table table-striped table-bordered";
 
 
-  const headers = ["Recruiter ID", "User ID", "Is Approved", "Username", "Actions"];
+  const headers = ["Recruiter ID", "Officials", "Is Approved", "Username", "Actions"];
   const headerRow = document.createElement("tr");
   headers.forEach(headerText => {
     const th = document.createElement("th");
@@ -24,15 +24,21 @@ function displayRecruitersTable(recruiters) {
   recruiters.forEach(recruiter => {
     const tr = document.createElement("tr");
     const tdRecruiterID = document.createElement("td");
-    const tdUserID = document.createElement("td");
+    const tdOfficials = document.createElement("td");
     const tdIsApproved = document.createElement("td");
     const tdUsername = document.createElement("td");
     const tdActions = document.createElement("td");
 
     tdRecruiterID.textContent = recruiter.recruiterID;
-    tdUserID.textContent = recruiter.userID;
     tdIsApproved.textContent = recruiter.isApproved ? "Yes" : "No";
     tdUsername.textContent = recruiter.username;
+    const officialsLink = document.createElement("a");
+    officialsLink.href = `https://localhost:44346/api/File/DownloadFile?filename=${encodeURIComponent(recruiter.officialFiles)}`;
+    officialsLink.textContent = recruiter.officialFiles;
+    officialsLink.target = "_blank"; // Open the link in a new tab
+
+    // Append the link to the "Officials" cell
+    tdOfficials.appendChild(officialsLink);
 
     // Create "Approve" button with Bootstrap styles
     const approveButton = document.createElement("button");
@@ -43,7 +49,7 @@ function displayRecruitersTable(recruiters) {
     tdActions.appendChild(approveButton);
 
     tr.appendChild(tdRecruiterID);
-    tr.appendChild(tdUserID);
+    tr.appendChild(tdOfficials);
     tr.appendChild(tdIsApproved);
     tr.appendChild(tdUsername);
     tr.appendChild(tdActions);
