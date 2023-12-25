@@ -109,7 +109,7 @@ async function performLogin() {
         console.log("Role claim is 'Admin', attempting redirection...");
         setTimeout(function () {
           console.log("Redirecting to Admin.html...");
-          window.location.href = "/Admin.html";
+          window.location.href = "/admin_grid.html";
         }, 0);
       } 
       else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Recruiter") {
