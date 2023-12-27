@@ -116,7 +116,7 @@ async function performLogin() {
         console.log("Role claim is 'Recruiter', attempting redirection...");
         setTimeout(function () {
           console.log("Redirecting to RecruiterPanel.html...");
-          window.location.href = "/RecruiterPanel.html";
+          window.location.href = "/recruiter_grid.html";
         }, 0);
       }else if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Student") {
         console.log("Role claim is 'student', attempting redirection...");

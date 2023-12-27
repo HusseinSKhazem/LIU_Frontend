@@ -80,11 +80,57 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
                     </div>
                 `;
 
-                // Append the resume HTML to the 'resume' div
                 document.getElementById('resume').innerHTML = resumeHtml;
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
+    </script>
+    <script>
+        function generatePDF() {
+    const resumeContainer = document.querySelector('.resume-container');
+
+    // Sample data (replace this with the actual API response)
+    const data = {
+        name: "John Doe",
+        description: "Web Developer",
+        email: "john@example.com",
+        phoneNumber: "123-456-7890",
+        educationalBackground: "Bachelor's in Computer Science",
+        workExperience: "2 years",
+        location: "City, Country",
+        skills: "HTML, CSS, JavaScript",
+        projects: "Project 1, Project 2",
+        socials: "LinkedIn: linkedin.com/in/johndoe, GitHub: github.com/johndoe"
+    };
+    const resumeHtml = `
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">${data.name}</h5>
+                <p class="card-text text-muted text-center">${data.description}</p>
+                <!-- Remove the profile picture element -->
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Email:</strong> ${data.email}</li>
+                    <li class="list-group-item"><strong>Phone Number:</strong> ${data.phoneNumber}</li>
+                    <li class="list-group-item"><strong>Educational Background:</strong> ${data.educationalBackground}</li>
+                    <li class="list-group-item"><strong>Work Experience:</strong> ${data.workExperience}</li>
+                    <li class="list-group-item"><strong>Location:</strong> ${data.location}</li>
+                    <li class="list-group-item"><strong>Skills:</strong> ${data.skills}</li>
+                    <li class="list-group-item"><strong>Projects:</strong> ${data.projects}</li>
+                    <li class="list-group-item"><strong>Socials:</strong> ${data.socials}</li>
+                </ul>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('resume').innerHTML = resumeHtml;
+    html2pdf(resumeContainer, {
+        margin: 10,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+}
     </script>
 </body>
 </html>
