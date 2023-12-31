@@ -1,5 +1,5 @@
 $("#saveChangesBtn").click(function () {
-    // Get values from input fields
+
     var bio = $("#bio").val();
     var link = $("#link").val();
 
@@ -18,14 +18,14 @@ $("#saveChangesBtn").click(function () {
         type: "POST",
         url: `https://localhost:44346/api/User/UpdateProfile?Email=${email}`,
         data: formData,
-        processData: false,  // Don't process the data (already in form data)
-        contentType: false,  // Don't set content type (let the server handle it)
+        processData: false, 
+        contentType: false,  
         success: function (response) {
             location.reload();
             console.log(response);
         },
         error: function (error) {
-            // Handle error
+
             console.log(error);
         }
     });

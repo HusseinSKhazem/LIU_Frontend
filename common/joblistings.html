@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <style>
+    
+   body {
+    background-color: #f8f9fa;
+  }
+
+  .navbar {
+    background-color: #0c2542;
+  }
+
+  .navbar-brand {
+    color: #ffb019 !important;
+  }
+
+  .navbar-toggler-icon {
+    background-color: white;
+    color: #ffb019;
+  }
+
+  .filter-column {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+  }
+
+  select,
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .job-listing-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .job-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .job-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .job-card-body {
+    padding: 20px;
+  }
+
+  .job-title {
+    color: #0c2542;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+      .job-info {
+        color: rgb(21, 18, 18);
+        font-size: 1.15em;
+        margin-bottom: 10px;
+      }
+
+      .job-icon {
+        font-size: 1.2rem;
+        color: #007bff;
+        margin-right: 5px;
+      }
+
+      .job-salary {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-top: 10px;
+      }
+
+      .job-card-body {
+    padding: 20px;
+}
+
+.job-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.job-info {
+    margin-bottom: 5px;
+}
+
+.job-salary {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.comment-input-section {
+    margin-top: 20px;
+}
+
+#commentInput {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3897f0;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+a {
+    color: #3897f0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.see-all-comments-section a:hover {
+    text-decoration: underline;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    font-weight: bold;
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comments-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.comments-list p {
+    margin: 0;
+}
+
+.comments-list strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Responsive Margin for Cards */
+@media (max-width: 767px) {
+  .col-md-3 {
+    margin-bottom: 20px;
+  }
+}
+.modal-content {
+    border-radius: 10px;
+}
+
+.comment-container {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.comment-profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.comment-profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.comment-username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    margin: 0;
+}
+
+.success-banner {
+    background-color: #4CAF50; /* Green background color */
+    border: 1px solid #4CAF50;
+    height: 10vh;
+    border-radius: 15px;
+    color: white; /* White text color */
+    padding: 15px; /* Padding */
+    position: fixed; /* Fixed position */
+    bottom: 0; /* Position at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000; }
+
+    .alert-banner {
+    background-color: #790000; /* Green background color */
+    border: 1px solid #790000;
+    height: 10vh;
+    border-radius: 15px;
+    color: white; /* Wh
+    color: white; /* White text color */
+    padding: 15px; /* Padding */
+    position: fixed; /* Fixed position */
+    bottom: 0; /* Position at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000;
+  
+  }
+
+  .banner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+    }
+  </style>
+  <body>
+    
+    <div class="wrapper">
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#" style="color: #ffb019 !important;">
+                <img src="../assets/Logo.png" width="50" alt="" class="mr-2">
+                <span>JobPortal-Recruiter</span>
+            </a>
+          <button class="navbar-toggler" type="button" style=" color: #ffb019 !important;" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" style=" color: #ffb019 !important;" aria-current="page" href="../RecruiterPanel.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Screens/RecruiterProfile.html" style=" color: #ffb019 !important;">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+             
+              <div class="col-md-3">
+                <div class="filter-column">
+                  <label for="majorFilter">Major:</label>
+                  <select id="majorFilter">
+                  </select>
+                  <hr>
+                  <label for="salaryFilter">Salary:</label>
+                  <input type="number" id="salaryFilter" placeholder="Enter salary" oninput="">
+                 
+                  <hr>
+                  <label for="locationFilter">Location:</label>
+                        <select id="locationFilter" onchange="">
+                            <option value="Beirut">Beirut</option>
+                            <option value="Tripoli">Tripoli</option>
+                            <option value="Tyre">Tyre</option>
+                            <option value="Saida">Saida</option>
+                            <option value="Saida">Nabatieh</option>
+                            <option value="Bekaa">Bekaa</option>
+                        </select>
+                        <hr>
+                 
+                  <Button class="btn btn-success">Search</Button>
+                </div>
+              </div>
+  
+              <!-- Second Column: Job Offer Listing -->
+              <div class="col-md-9">
+                <div class="job-listing-column" id="jobListingColumn">
+
+
+                </div>
+            </div>
+    
+    
+    </div>
+        </div>
+<div id="comment-success-alert" class="alert alert-success position-fixed top-50 start-50 translate-middle" style="display: none; width: 300px; text-align: center; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+  <strong>Success!</strong> Comment added successfully.
+</div>
+<div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body" id="commentsContainer">
+              <!-- Comments will be dynamically added here -->
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="referModal" tabindex="-1" role="dialog" aria-labelledby="referModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="referModalLabel">Refer a Student</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="referForm">
+            <div class="form-group">
+              <label for="studentEmail">Student Email</label>
+              <input type="email" class="form-control" id="studentEmail" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <input type="hidden" id="vacancyID">
+            <button type="submit" class="btn btn-success">Refer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+        <div class="modal fade" id="referModal" tabindex="-1" role="dialog" aria-labelledby="referModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="referModalLabel">Refer A Student</h5>
+                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Refer Form -->
+                  <form id="referForm">
+                    <div class="form-group">
+                      <label for="studentEmail">Student Email:</label>
+                      <input type="email" class="form-control" id="studentEmail" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description:</label>
+                      <textarea class="form-control" id="description" rows="3" required></textarea>
+                    </div>
+                    <!-- Add a hidden input field for vacancy ID -->
+                    <input type="hidden" id="vacancyID" name="vacancyID">
+          
+                    <button type="submit" class="btn btn-success">Refer</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="successBanner" class="alert alert-success banner" role="alert">
+            <strong>Success!</strong> Your operation was successful.
+          </div>
+          
+          <div id="errorBanner" class="alert alert-danger banner" role="alert">
+            <strong>Error!</strong> Something went wrong.
+          </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/OfferListings.js"></script>
+    <script src="../js/JobPortalControllers/Comment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var token = localStorage.getItem("jwtToken");
+        console.log(token);
+        if (!token) {
+          window.location.href = "login.html";
+        }
+
+        var claims = parseJwt(token);
+
+        if (
+          claims[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] != "Recruiter" 
+        ) {
+          console.log(
+            "Role claim isn't; 'Recruiter', attempting redirection..."
+          );
+          setTimeout(function () {
+            console.log("Redirecting to Index.html...");
+            window.location.href = "../index.html";
+          }, 0);
+        } else {
+          console.log("Login Successful");
+        }
+        function parseJwt(token) {
+          try {
+            if (!token) {
+              console.log("JWT Token is empty or undefined");
+              return null;
+            }
+
+            var base64Url = token.split(".")[1];
+            var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            var jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            return JSON.parse(jsonPayload);
+          } catch (error) {
+            console.error("Error parsing JWT:", error);
+            return null;
+          }
+        }
+      });
+    </script>
+    <script>
+        function openReferModal(vacancyId) {
+          document.getElementById('vacancyID').value = vacancyId;
+
+          $('#referModal').modal('show');
+        }
+        document.getElementById('referForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const studentEmail = document.getElementById('studentEmail').value;
+    const description = document.getElementById('description').value;
+    const vacancyID = document.getElementById('vacancyID').value;
+    const jwtToken = localStorage.getItem('jwtToken');
+    var claims = parseJwt(jwtToken);
+    var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+
+    fetch('https://localhost:44346/api/Instructor/Refer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            studentEmail,
+            instructorEmail: Email,
+            description,
+            vacancyID,
+        }),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return response.text().then(errorMessage => {
+                throw new Error(`Error message: ${errorMessage}`);
+            });
+        }
+    })
+    .then(data => {
+        console.log('JSON Response:', data);
+        showSuccessBanner('Referral added successfully!');
+        referModal.hide();
+    })
+    .catch(error => {
+        console.error('Fetch error:', error.message);
+        showErrorBanner(error.message);
+    });
+});
+
+function showSuccessBanner(message) {
+    $('#successBanner').html('<strong>Success!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+  }
+
+  function showErrorBanner(message) {
+    $('#errorBanner').html('<strong>Error!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+  }
+      
+      </script>
+    <script>
+    function parseJwt(token) {
+      try {
+        if (!token) {
+          console.log("JWT Token is empty or undefined");
+          return null;
+        }
+
+        var base64Url = token.split(".")[1];
+        var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        var jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+
+        return JSON.parse(jsonPayload);
+      } catch (error) {
+        console.error("Error parsing JWT:", error);
+        return null;
+      }
+    }</script>
+
+
+  </body>
+</html>
+</body>
+</html>

@@ -156,7 +156,12 @@ function addRecommendation() {
     `;
 
     document.body.insertAdjacentHTML('afterbegin', banner);
-  }
+
+    
+    setTimeout(() => {
+        document.querySelector('.alert').remove();
+    }, 2000);
+}
         
     </script>
 </body>

@@ -1,7 +1,5 @@
 $(document).ready(function () {
-    // Fetch data from the API
-    $.get("https://localhost:44346/api/landing/most-applied", function (data) {
-      // Iterate through each vacancy and create a card
+    $.get("https://localhost:44346/api/Mobile/GetLast4Vacancies", function (data) {
       data.forEach(function (vacancy) {
         var cardHtml = `
           <div class="col-md-3">
@@ -14,12 +12,12 @@ $(document).ready(function () {
                 <p class="card-text">
                   <i class="fas fa-building"></i> Company: ${vacancy.companyName}
                 </p>
-                <a href="../vacancyDetails.html?vacancyId=${vacancy.vacancyId}" class="btn btn-warning btn-sm">View Details</a>
+                <a href="../instructorvacancydetails.html?vacancyId=${vacancy.vacancyId}" class="btn btn-warning btn-sm">View Details</a>
               </div>
             </div>
           </div>
         `;
-        $("#vacanciesThird").append(cardHtml);
+        $("#vacanciesRow").append(cardHtml);
       });
     });
   });

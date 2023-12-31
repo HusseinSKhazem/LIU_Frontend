@@ -1,19 +1,15 @@
-function populateMajorOptions() {
+function GetMajorsOptions() {
     $.ajax({
         url: "https://localhost:44346/api/Major/GetMajors",
         method: "GET",
         success: function(response) {
             var majorFilter = $("#majorFilter");
-
-            // Clear existing options
             majorFilter.empty();
-
-            // Add options from the response
             response.forEach(function(major) {
                 majorFilter.append('<option value="' + major.majorID + '">' + major.majorName + '</option>');
             });
 
-            // Trigger the change event to fetch and display job listings for the default selected major (if any)
+          
             majorFilter.trigger('change');
         },
         error: function(error) {
@@ -23,8 +19,7 @@ function populateMajorOptions() {
 }
 
 
-
-function fetchAndDisplayJobListings(majorID) {
+function fetchAndJobs(majorID) {
     $.ajax({
         url: `https://localhost:44346/api/Mobile/GetVacancyByMajor/${majorID}`,
         method: "GET",
@@ -56,12 +51,11 @@ function fetchAndDisplayJobListings(majorID) {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                            <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
-    <input type="text" class="comment-input" placeholder="Add a comment...">
-    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
-</div>
+                            <input type="text" class="comment-input" placeholder="Add a comment...">
+                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        </div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
@@ -87,7 +81,7 @@ function fetchAndDisplayJobListings(majorID) {
 }
 
 
-function fetchAndDisplayJobByLocation() {
+function fetchAndDisplayByLocation() {
     var selectedMajorID = $("#majorFilter").val();
     var selectedLocation = $("#locationFilter").val();
 
@@ -122,7 +116,7 @@ function fetchAndDisplayJobByLocation() {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                            <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
+                        
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
     <input type="text" class="comment-input" placeholder="Add a comment...">
@@ -153,7 +147,7 @@ function fetchAndDisplayJobByLocation() {
     });
 }
 
-function fetchAndDisplayJobBySalary() {
+function fetchAndDisplayBySalary() {
     var selectedMajorID = $("#majorFilter").val();
     var selectedLocation = $("#locationFilter").val();
     var selectedSalary = $("#salaryFilter").val();
@@ -188,7 +182,6 @@ function fetchAndDisplayJobBySalary() {
                         <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                         <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                         <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                        <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
                         <!-- Comment Input Section -->
                         <div class="comment-input-section">
                             <input type="text" class="comment-input" placeholder="Add a comment...">
@@ -197,7 +190,7 @@ function fetchAndDisplayJobBySalary() {
             
                         <!-- See All Comments Section -->
                         <div class="see-all-comments-section">
-                        <a href="#" class="see-all-comments-link ">See All Comments</a>
+                        <a href="#" class="see-all-comments-link">See All Comments</a>
                     </div>
                     </div>
                 </div>
@@ -220,15 +213,15 @@ function fetchAndDisplayJobBySalary() {
 
 
 $(document).ready(function() {
-    populateMajorOptions();
+    GetMajorsOptions();
 
 });
     $("#majorFilter").on("change", function() {
-        fetchAndDisplayJobByLocation();
+        fetchAndDisplayByLocation();
     });
 
     $("#locationFilter").on("change", function() {
-        fetchAndDisplayJobByLocation();
+        fetchAndDisplayByLocation();
         var salaryValue = $("#salaryFilter").val();
         if (salaryValue !== "") {
             fetchAndDisplayJobBySalary();
@@ -236,13 +229,9 @@ $(document).ready(function() {
     });
 
     $("#salaryFilter").on("input", function() {
-        fetchAndDisplayJobBySalary();
+        fetchAndDisplayBySalary();
     });
     
-    $("#AllFilter").on("click", function() {
-        var selectedMajorID = $("#majorFilter").val();
-        fetchAndDisplayJobListings(selectedMajorID);
-      });
 
 
 

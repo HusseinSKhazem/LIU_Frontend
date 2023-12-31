@@ -14,7 +14,7 @@ $(document).ready(function () {
                 <p class="card-text">
                   <i class="fas fa-building"></i> Company: ${vacancy.companyName}
                 </p>
-                <a href="../vacancyDetails.html?vacancyId=${vacancy.vacancyId}" class="btn btn-warning btn-sm">View Details</a>
+                <a href="../instructorvacancydetails.html?vacancyId=${vacancy.vacancyId}" class="btn btn-warning btn-sm">View Details</a>
               </div>
             </div>
           </div>

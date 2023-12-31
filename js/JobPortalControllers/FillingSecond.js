@@ -12,12 +12,12 @@ $(document).ready(function () {
               <div class="card-body">
                 <h5 class="card-title text-truncate">${vacancy.jobOffer}</h5>
                 <p class="card-text">
-                  <i class="fas fa-money-bill-alt"></i> Salary: $${vacancy.salary}
+                  <i class="fas fa-money-bill-alt"></i>aSalary: $${vacancy.salary}
                 </p>
                 <p class="card-text">
                   <i class="fas fa-building"></i> Company: ${vacancy.companyName}
                 </p>
-                <a href="your_desired_file.html" class="btn btn-warning btn-sm">View Details</a>
+                <a href="../vacancyDetails.html?vacancyId=${vacancy.vacancyId}" class="btn btn-warning btn-sm">View Details</a>
               </div>
             </div>
           </div>

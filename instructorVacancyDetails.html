@@ -4,66 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacancy Page</title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
 
-        .card {
-            margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            border-bottom: none;
-            background-color: #007bff;
-            color: #fff;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-text {
-            margin-bottom: 10px;
-        }
-
-        h5.card-title {
-            color: #007bff;
-        }
-
-        .badge-primary {
-            background-color: #007bff;
-        }
-
-        .badge-success {
-            background-color: #28a745;
-        }
-
-        .badge-info {
-            background-color: #17a2b8;
-        }
-
-        .badge-warning {
-            background-color: #ffc107;
-        }
-
-        .badge-danger {
-            background-color: #dc3545;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/Vdetails.css">
+      
 </head>
 <body>
 
     <div class="container mt-4">
-        <!-- Job Card -->
+
         <div class="card">
             <div class="card-header">
                 <h3 class="mb-0 text-center">Job Details</h3>
@@ -81,24 +33,23 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and Popper.js -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="./js/JobPortalControllers/jobOffers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Font Awesome Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var vacancyId = getParameterByName('vacancyId');
-            // Fetch data from API
+
             fetch('https://localhost:44346/api/Admin/vacancyById?id=' + vacancyId)
                 .then(response => response.json())
                 .then(data => updateJobDetails(data))
                 .catch(error => console.error('Error fetching data:', error));
         });
 
-        // Function to update job details on the page
         function updateJobDetails(data) {
             document.getElementById('jobOffer').innerText = data.jobOffer;
             document.getElementById('description').innerText = data.description;
@@ -109,7 +60,6 @@
             document.getElementById('username').innerText = data.username;
             document.getElementById('companyName').innerText = data.companyName;
         }
-        // Function to get URL parameter
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
