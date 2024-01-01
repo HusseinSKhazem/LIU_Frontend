@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login History</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<style>
+  <style>
     body {
-      background-color: #a2a9b0;
+      background-color: #f8f9fa;
+      font-family: 'Kanit', sans-serif;
     }
 
     .container {
       background-color: #ffffff;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
       margin-top: 50px;
     }
 
     h2 {
-      color: #007bff;
+      color: #ffb019;
+      font-weight: 700;
     }
 
     form {
       margin-bottom: 20px;
     }
 
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 8px;
+      width: 100%;
+    }
+
     button {
       background-color: #007bff;
       color: #ffffff;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -51,7 +67,7 @@
       border-collapse: collapse;
       margin-top: 20px;
       background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       overflow: hidden;
     }
@@ -63,18 +79,35 @@
     }
 
     th {
-      background-color: #007bff;
-      color: #ffffff;
+      background-color: #0c2542;
+      color: #ffb019;
     }
 
     tbody tr:hover {
       background-color: #f2f2f2;
     }
+
+    .header {
+      background-color: #0c2542;
+      padding: 20px;
+      border-radius: 10px 10px 0 0;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .header img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
   </style>
+</head>
 <body>
 
   <div class="container mt-5">
-    <h2>Login History</h2>
+    <div class="header">
+      <img src="./assets/Logo.png" alt="Logo">
+      <h2 class="mb-4">Login History</h2>
+    </div>
 
     <form>
       <div class="form-row">

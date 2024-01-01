@@ -30,16 +30,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="./Profile.html" style=" color: #0c2542 !important;">Profile</a>
               </li>
-              <li class="nav-item dropdown" style=" color: #0c2542!important;">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" color: #0c2542 !important;">
-                  Dropdown
+              <li class="nav-item">
+                <a class="nav-link" href="../applicationStatus.html" style=" color: #0c2542 !important;">Applications</a>
+              </li>
+        
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" style=" color: #0c2542 !important;" onclick="logout()">
+                  logout
                 </a>
-                <ul class="dropdown-menu" style=" color: #0c2542 !important;">
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Action</a></li>
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Another action</a></li>
-                  <li><hr class="dropdown-divider" style=" color:  #0c2542 !important;"></li>
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Something else here</a></li>
-                </ul>
               </li>
             </ul>
           </div>
@@ -90,6 +89,7 @@
     
 
     </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var token = localStorage.getItem("jwtToken");
@@ -142,6 +142,7 @@
       });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/JWT.js"></script>
     <script src="../js/JobPortalControllers/FillingThird.js"></script>
     <script src="../js/JobPortalControllers/FillingSecond.js"></script>
     <script src="../js/JobPortalControllers/FillingPortal.js"></script>

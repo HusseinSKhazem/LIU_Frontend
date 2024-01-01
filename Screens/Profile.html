@@ -162,7 +162,10 @@
 />
 <script>
     function saveChanges() {
-        // Fetch values from form fields
+      const jwtToken = localStorage.getItem('jwtToken');
+    var claims = parseJwt(jwtToken);
+    var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+    const mail = encodeURIComponent(Email);
         var username = document.getElementById('inputUsername').value;
         var email = document.getElementById('Email').value;
         var socials = document.getElementById('Socials').value;
@@ -173,7 +176,7 @@
         var workExperience = document.getElementById('WorkExperience').value;
         var education = document.getElementById('educationalBackground').value;
         var projects = document.getElementById('projects').value;
-
+  
         var apiData = {
             "location": location,
             "socials": socials,
@@ -186,8 +189,7 @@
             "workExperience": workExperience,
             "skills": skills 
         };
-
-        fetch('https://localhost:44346/api/Resume/UpdateResume?Email=12110243%40students.liu.edu.lb', {
+        fetch(`https://localhost:44346/api/Resume/UpdateResume?Email=${mail}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

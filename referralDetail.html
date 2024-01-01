@@ -13,35 +13,36 @@
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous">
     <style>
-       body {
+        body {
             background-color: #f8f9fa;
             padding-top: 50px;
+            font-family: 'Arial', sans-serif;
         }
 
         .container {
             margin-top: 20px;
         }
 
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .envelope {
+            background-color: #fdfdfe;
+            border: 1px solid #d4d8dd;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
-            padding: 20px;
         }
 
-        .card:hover {
+        .envelope:hover {
             transform: scale(1.02);
         }
 
-        .card-body {
+        .envelope-body {
             padding: 30px;
         }
 
         .card-title {
-            color: #007bff;
-            font-size: 2rem;
+            color: #0056b3;
+            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
@@ -52,7 +53,7 @@
         }
 
         .card-text {
-            color: #343a40;
+            color: #495057;
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
@@ -60,24 +61,44 @@
         .card-text strong {
             font-weight: bold;
         }
+
+        .envelope-flap {
+            background-color: #f8f9fa;
+            border-top: 1px solid #d4d8dd;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .fa-envelope {
+            color: #6c757d;
+            font-size: 1.5rem;
+        }
+
     </style>
 </head>
 
 <body>
 
     <div class="container mt-5">
-        <div class="card p-7">
-            <div class="card-body">
-                <h1 class="card-title">Details</h1>
-                <div id="resultCard" class="card">
-                    <div class="card-body">
-                        <!-- Data will be displayed here dynamically -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="envelope">
+                    <div class="envelope-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                        <img src="./assets/Logo.png" alt=""></div>
+                        <h1 class="card-title text-center mb-4 mt-4">Referral Details</h1>
+                        <div id="resultCard">
+                            <!-- Data will be displayed here dynamically -->
+                        </div>
+                    </div>
+                    <div class="envelope-flap">
+                        <i class="fas fa-envelope"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);

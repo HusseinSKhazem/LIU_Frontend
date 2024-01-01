@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -14,8 +17,9 @@
     <title>Referrals</title>
     <style>
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Kanit', sans-serif;
+            background: rgb(255,176,25);
+background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
             padding-top: 50px;
         }
 
@@ -28,13 +32,14 @@
         }
 
         h3, h4 {
-            color: #3498db;
+            color: #0c2542;
+            font-size: 3em;
         }
 
         #vacancySelect {
-            background-color: #3498db;
+            background-color: #0c2542;
             color: #ffffff;
-            border: 1px solid #3498db;
+            border: 1px solid #0c2542;
             border-radius: 5px;
         }
 
@@ -55,7 +60,7 @@
         }
 
         th {
-            background-color: #3498db;
+            background-color: #0c2542;
             color: #ffffff;
         }
 
@@ -66,11 +71,20 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center">
-        <h3>
-            Referrals on your vacancies
-        </h3>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <img src="./assets/Logo.png" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                <h3>
+                    Referrals on your vacancies
+                </h3>
+            </div>
+        </div>
+
     <div class="container mt-5">
         <div class="form-group">
             <label for="vacancySelect">Select Vacancy:</label>

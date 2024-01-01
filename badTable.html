@@ -4,32 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bad Comments Table</title>
-  <!-- Bootstrap CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
     body {
       background-color: #f8f9fa;
+      font-family: 'Kanit', sans-serif;
     }
 
     .container {
       background-color: #ffffff;
-      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-top: 50px;
     }
 
     h2 {
-      color: #007bff;
+      color: #0c2542;
+      font-weight: 700;
     }
 
     th, td {
       text-align: center;
+      padding: 15px;
     }
 
     thead {
-      background-color: #007bff;
-      color: #ffffff;
+      background-color: #0c2542;
+      color: #ffb019;
     }
 
     tbody tr:nth-child(odd) {
@@ -43,8 +49,11 @@
 <body>
 
 <div class="container mt-5">
-  <h2>Bad Comments Table</h2>
-  <table class="table">
+  <div class="d-flex justify-content-center align-items-center flex-column">
+    <img src="./assets/Logo.png" alt="Logo" class="mb-3">
+    <h2>Bad Comments Table</h2>
+  </div>
+  <table class="table  mt-5">
     <thead>
       <tr>
         <th>ID</th>

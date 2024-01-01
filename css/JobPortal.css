@@ -132,3 +132,14 @@ border-bottom: 3px solid #0c2542;
         margin-bottom: 10px;
         color: #ffb019;
       }
+
+
+      #bottomRightImage {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        max-width: 400px; 
+        max-height: 400px; 
+      }
