@@ -257,64 +257,72 @@
           .then((data) => displayApplications(data))
           .catch((error) => console.error("Error fetching data:", error));
       }
-
       function displayApplications(applications) {
-        var tableContainer = document.getElementById(
-          "applications-table-container"
-        );
+    var tableContainer = document.getElementById("applications-table-container");
 
-        tableContainer.innerHTML = "";
+    tableContainer.innerHTML = "";
 
-     
-        var table = document.createElement("table");
-        table.classList.add("table", "table-bordered");
-//table
-        var headerRow = table.createTHead().insertRow();
-        headerRow.innerHTML =
-          "<th>Name</th><th>Status</th><th>Date Time</th><th>Number of Recommendations</th><th>Actions</th><th>File</th><th>Interview</th>";
+    var table = document.createElement("table");
+    table.classList.add("table", "table-bordered");
 
-     
-        var tbody = table.createTBody();
-        applications.forEach((application) => {
-          var row = tbody.insertRow();
+    var headerRow = table.createTHead().insertRow();
+    headerRow.innerHTML =
+        "<th>Name</th><th>Status</th><th>Date Time</th><th>Number of Recommendations</th><th>Actions</th><th>File</th><th>Interview</th>";
 
+    var tbody = table.createTBody();
+    applications.forEach((application) => {
+        var row = tbody.insertRow();
 
-          var student = application.student;
-          row.insertCell().innerHTML = student.username;
+        var student = application.student;
+        row.insertCell().innerHTML = student.username;
+        row.insertCell().innerHTML = application.status;
+        row.insertCell().innerHTML = application.datetime;
+        row.insertCell().innerHTML = student.numberOfRecommendations;
 
-          row.insertCell().innerHTML = application.status;
-          row.insertCell().innerHTML = application.datetime;
-          
-          row.insertCell().innerHTML = student.numberOfRecommendations; 
-          var acceptButton = document.createElement('button');
-          acceptButton.className = 'btn btn-success';
-          acceptButton.innerHTML = 'Accept';
-          acceptButton.onclick = function () {
+        var actionsCell = row.insertCell();
 
-    var applicationID = application.applicationId; 
-    acceptApplication(applicationID);
-  };
-  row.insertCell().appendChild(acceptButton); 
-          var cvLink = $('<a>', {
+        var acceptButton = document.createElement('button');
+        acceptButton.className = 'btn btn-success mr-2';
+        acceptButton.innerHTML = 'Accept';
+        acceptButton.onclick = function () {
+            var applicationID = application.applicationId;
+            acceptApplication(applicationID);
+        };
+        actionsCell.appendChild(acceptButton);
+
+        var rejectButton = document.createElement('button');
+        rejectButton.className = 'btn btn-danger';
+        rejectButton.innerHTML = 'Reject';
+        rejectButton.onclick = function () {
+            var applicationID = application.applicationId;
+            rejectApplication(applicationID);
+        };
+        actionsCell.appendChild(rejectButton);
+
+        var cvLink = $('<a>', {
             href: './Screens/studentResume.html?email=' + encodeURIComponent(student.email),
             text: 'View CV',
             target: '_blank'
         });
+        row.insertCell().innerHTML = cvLink.prop('outerHTML');
 
-row.insertCell().innerHTML = cvLink.prop('outerHTML');
-var interviewButton = document.createElement('button');
-                interviewButton.className = 'btn btn-primary';
-                interviewButton.innerHTML = 'Interview';
-                interviewButton.onclick = function () {
-                    openInterviewModal(application.applicationId);
-                };
-                row.insertCell().appendChild(interviewButton);
-            });
-        
+        var interviewButton = document.createElement('button');
+        interviewButton.className = 'btn btn-primary';
+        interviewButton.innerHTML = 'Interview';
+        interviewButton.onclick = function () {
+            openInterviewModal(application.applicationId);
+        };
+        row.insertCell().appendChild(interviewButton);
+    });
 
-      
-        tableContainer.appendChild(table);
-      }
+    tableContainer.appendChild(table);
+}
+
+
+
+
+
+
 
       function submitInterviewForm() {
     var applicationID = document.getElementById('modalApplicationID').value;
@@ -422,6 +430,13 @@ function openInterviewModal(applicationID) {
         vacancySelect.addEventListener("change", handleVacancySelectChange);
       };
 
+
+
+
+
+
+      
+
       function acceptApplication(applicationID) {
   var jwtToken = localStorage.getItem('jwtToken');
 
@@ -445,6 +460,32 @@ function openInterviewModal(applicationID) {
     .catch(error => {
       console.error('Error:', error);
     });
+}
+
+
+function rejectApplication(applicationID) {
+    var jwtToken = localStorage.getItem('jwtToken');
+
+    var apiUrl = 'https://localhost:44346/api/Recruiter/RejectApplication?applicationID=' + applicationID;
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwtToken}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data === 1) {
+                showBanner("Rejection Email Was sent Successfully", true)
+            } else {
+                console.error('Error rejecting application');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function showBanner(message, isSuccess) {
