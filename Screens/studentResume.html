@@ -8,8 +8,8 @@
 </head>
 <style>
    body {
-    background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 36%, rgba(205,221,239,1) 48%, rgba(81,153,230,1) 75%, rgba(0,123,255,1) 100%);
+    background: rgb(255,176,25);
+background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
             font-family:Verdana, Geneva, Tahoma, sans-serif
         }
         .resume-container {
@@ -20,7 +20,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
             width: 200px;
             height: 200px;
             object-fit: cover;
-            border: 4px solid #007bff;
+            border: 4px solid #0c2542;
             border-radius: 50%;
         }
         .card {
@@ -31,13 +31,13 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
             transform: scale(1.02);
         }
         .card-title {
-            color: #007bff;
+            color: #0c2542;
         }
         .list-group-item {
             border: none;
         }
         .list-group-item strong {
-            color: #007bff;
+            color: #0c2542;
         }
    
 </style>
@@ -47,6 +47,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
@@ -84,53 +85,53 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
-    </script>
-    <script>
-        function generatePDF() {
-    const resumeContainer = document.querySelector('.resume-container');
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 
-    // Sample data (replace this with the actual API response)
-    const data = {
-        name: "John Doe",
-        description: "Web Developer",
-        email: "john@example.com",
-        phoneNumber: "123-456-7890",
-        educationalBackground: "Bachelor's in Computer Science",
-        workExperience: "2 years",
-        location: "City, Country",
-        skills: "HTML, CSS, JavaScript",
-        projects: "Project 1, Project 2",
-        socials: "LinkedIn: linkedin.com/in/johndoe, GitHub: github.com/johndoe"
-    };
-    const resumeHtml = `
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">${data.name}</h5>
-                <p class="card-text text-muted text-center">${data.description}</p>
-                <!-- Remove the profile picture element -->
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Email:</strong> ${data.email}</li>
-                    <li class="list-group-item"><strong>Phone Number:</strong> ${data.phoneNumber}</li>
-                    <li class="list-group-item"><strong>Educational Background:</strong> ${data.educationalBackground}</li>
-                    <li class="list-group-item"><strong>Work Experience:</strong> ${data.workExperience}</li>
-                    <li class="list-group-item"><strong>Location:</strong> ${data.location}</li>
-                    <li class="list-group-item"><strong>Skills:</strong> ${data.skills}</li>
-                    <li class="list-group-item"><strong>Projects:</strong> ${data.projects}</li>
-                    <li class="list-group-item"><strong>Socials:</strong> ${data.socials}</li>
-                </ul>
-            </div>
-        </div>
-    `;
+   <!-- Script for jspdf -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+   
+   <script>
 
-    document.getElementById('resume').innerHTML = resumeHtml;
-    html2pdf(resumeContainer, {
-        margin: 10,
-        filename: 'resume.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
     });
 }
-    </script>
+
+async function downloadPDF() {
+    const resumeContainer = document.querySelector('.resume-container');
+    const profilePictureSrc = document.querySelector('.profile-picture').src;
+
+    try {
+        const profilePicture = await loadImage(profilePictureSrc);
+
+        html2canvas(resumeContainer, { useCORS: true }).then(canvas => {
+            const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297);
+            pdf.save('resume.pdf');
+        });
+    } catch (error) {
+        console.error('Error loading the profile picture:', error);
+    }
+}
+
+
+const downloadButton = document.createElement('button');
+    downloadButton.textContent = 'Download PDF';
+    downloadButton.className = 'btn btn-warning m-4';
+    downloadButton.style.position = 'fixed';
+    downloadButton.style.bottom = '0';
+    downloadButton.style.right = '0';
+    
+    downloadButton.addEventListener('click', downloadPDF);
+
+    // Append the button to the body
+    document.body.appendChild(downloadButton);
+   </script>
+   
+
 </body>
 </html>
