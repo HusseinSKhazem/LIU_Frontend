@@ -154,9 +154,22 @@ a {
     cursor: pointer;
 }
 
-.see-all-comments-section a:hover {
-    text-decoration: underline;
+.see-all-comments-section {
+    display: flex;
+    align-items: center;
 }
+.see-all-comments-link {
+    text-decoration: none;
+    color: #0c2542;
+}
+
+.fa-message {
+    font-size: 2em;
+    margin-left: 20px;
+}
+
+
+
 
 .comments-section {
     margin-top: 20px;
@@ -270,17 +283,7 @@ a {
               <li class="nav-item">
                 <a class="nav-link" href="./Profile.html" style=" color: #FFFF !important;">Profile</a>
               </li>
-              <li class="nav-item dropdown" style=" color: #FFFF !important;">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" color: #FFFF !important;">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" style=" color: #FFFF !important;">
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Action</a></li>
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Another action</a></li>
-                  <li><hr class="dropdown-divider" style=" color:  #0c2542 !important;"></li>
-                  <li><a class="dropdown-item" href="#" style=" color:  #0c2542 !important;">Something else here</a></li>
-                </ul>
-              </li>
+          
             </ul>
           </div>
         </div>
@@ -288,20 +291,17 @@ a {
       <div class="content">
         <div class="container-fluid">
             <div class="row">
-              <!-- First Column: Filter Criteria Card -->
               <div class="col-md-3">
                 <div class="filter-column">
-                  <!-- Filter criteria content goes here -->
-                  <!-- Example: -->
                   <label for="majorFilter">Major:</label>
                   <select id="majorFilter">
-                      <!-- options will be populated dynamically -->
                   </select>
                   <hr>
                   <label for="salaryFilter">Salary:</label>
                   <input type="number" id="salaryFilter" placeholder="Enter salary" oninput="">
                  
                   <hr>
+
                   <label for="locationFilter">Location:</label>
                         <select id="locationFilter" onchange="">
                             <option value="Beirut">Beirut</option>
@@ -310,10 +310,13 @@ a {
                             <option value="Saida">Saida</option>
                             <option value="Saida">Nabatieh</option>
                             <option value="Bekaa">Bekaa</option>
-                        </select>
-                        <hr>
-                 
-                  <Button id="AllFilter" class="btn btn-success">Get All</Button>
+                            <option value="Bekaa">Jounieh</option>
+                            <option value="Bekaa">Mount Lebanon</option>
+                            <option value="Bekaa">Baabda</option>
+                            <option value="Bekaa">International</option>
+                        </select>    
+                        <div class="d-flex justify-content-center align-items-center">            
+                  <Button id="AllFilter" class="btn btn-outline-dark">All locations</Button></div> 
                 </div>
               </div>
   
@@ -341,7 +344,6 @@ a {
               </button>
           </div>
           <div class="modal-body" id="commentsContainer">
-              <!-- Comments will be dynamically added here -->
           </div>
       </div>
   </div>
@@ -430,3 +432,6 @@ a {
     <script src="../js/JobPortalControllers/jobOffers.js"></script>
   </body>
 </html>
+
+
+

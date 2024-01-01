@@ -55,18 +55,18 @@ function fetchAndJobs(majorID) {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                            <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button>
+                            <div class="d-grid gap-2">
+                            <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button></div>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
                             <input type="text" class="comment-input" placeholder="Add a comment...">
-                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
                         </div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-    <a href="#" class="see-all-comments-link">See All Comments</a>
-</div>
-                        </div>
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
+                    </div>
                     </div>`;
                 
                     jobListingColumn.append(cardHtml);
@@ -122,17 +122,19 @@ function fetchAndDisplayByLocation() {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                            <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button>
+                            <div class="d-grid gap-2">
+                            <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button></div>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
     <input type="text" class="comment-input" placeholder="Add a comment...">
-    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+   
 </div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-    <a href="#" class="see-all-comments-link">See All Comments</a>
-</div>
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
+                    </div>
                         </div>
                     </div>`;
                 
@@ -188,16 +190,18 @@ function fetchAndDisplayBySalary() {
                         <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                         <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                         <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
-                        <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button>
+                        <div class="d-grid gap-2">
+                        <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button></div>
                         <!-- Comment Input Section -->
                         <div class="comment-input-section">
                             <input type="text" class="comment-input" placeholder="Add a comment...">
-                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                            
                         </div>
             
                         <!-- See All Comments Section -->
                         <div class="see-all-comments-section">
-                        <a href="#" class="see-all-comments-link">See All Comments</a>
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
                     </div>
                     </div>
                 </div>
@@ -219,6 +223,77 @@ function fetchAndDisplayBySalary() {
 }
 
 
+function fetchAndDisplayJobListings(majorID) {
+    $.ajax({
+        url: `https://localhost:44346/api/Mobile/GetVacancyByMajor/${majorID}`,
+        method: "GET",
+        success: function(response) {
+            var jobListingColumn = $("#jobListingColumn");
+            jobListingColumn.empty(); 
+
+            if (response.length === 0) {
+
+                jobListingColumn.append('<h2 style={color:red;}>No offers were found.</h2>');
+            } else {
+             
+                response.forEach(function(vacancy) {
+                    var cardHtml = `
+                    <div class="card job-card" data-vacancy-id="${vacancy.vacancyId}">
+                    <div class="job-card-body">
+                        <h5 class="job-title">${vacancy.jobOffer}</h5>
+                        <p class="job-info"><i class="fas fa-building job-icon"></i> ${vacancy.companyName}</p>
+                        <p class="job-info"><i class="fas fa-map-marker-alt job-icon"></i> ${vacancy.workLocation}</p>
+                        <p class="job-info"><i class="fas fa-clock job-icon"></i> ${vacancy.experience} Experience</p>
+                        <p class="job-salary">$${vacancy.salary}</p>
+                        <p class="job-info"><strong>Job Description:</strong> ${vacancy.description}</p>
+                        <p class="job-info"><strong>Requirements:</strong> ${vacancy.requirements}</p>
+                        <p class="job-info"><strong>Responsibility:</strong> ${vacancy.responsibility}</p>
+                        <p class="job-info"><strong>Working Hours:</strong> ${vacancy.workingHours} hours per day</p>
+                        <p class="job-info"><strong>Status:</strong> ${vacancy.status}</p>
+                        <p class="job-info"><strong>Experience:</strong> ${vacancy.experience}</p>
+                        <p class="job-info"><strong>Work Location:</strong> ${vacancy.workLocation}</p>
+                        <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
+                        <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
+                        <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
+                        <div class="d-grid gap-2">
+                        <button class="btn btn-success" onclick="openReferModal(${vacancy.vacancyId})">Refer A Student</button>
+                        </div>
+                        <!-- Comment Input Section -->
+                        <div class="comment-input-section">
+                            <input type="text" class="comment-input" placeholder="Add a comment...">
+                            
+                        </div>
+            
+                        <!-- See All Comments Section -->
+                        <div class="see-all-comments-section">
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
+                    </div>
+                    </div>
+                </div>`;
+                
+                    jobListingColumn.append(cardHtml);
+                });
+            }
+        },
+        error: function(error) {
+            if (error.status === 404) {
+                var jobListingColumn = $("#jobListingColumn");
+                jobListingColumn.empty();
+                jobListingColumn.append('<h2 style={color:red;}>No offers were found.</h2>');
+            } else {
+                console.error("Error fetching job listings:", error);
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
 $(document).ready(function() {
     GetMajorsOptions();
 
@@ -238,6 +313,11 @@ $(document).ready(function() {
     $("#salaryFilter").on("input", function() {
         fetchAndDisplayBySalary();
     });
+
+    $("#AllFilter").on("click", function() {
+        var selectedMajorID = $("#majorFilter").val();
+        fetchAndDisplayJobListings(selectedMajorID);
+      });
     
 
 

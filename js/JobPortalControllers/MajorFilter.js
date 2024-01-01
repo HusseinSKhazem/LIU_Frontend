@@ -56,17 +56,19 @@ function fetchAndDisplayJobListings(majorID) {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
+                            <div class="d-grid gap-2">
                             <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
+                            </div>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
     <input type="text" class="comment-input" placeholder="Add a comment...">
-    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
 </div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-    <a href="#" class="see-all-comments-link">See All Comments</a>
-</div>
+                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                            <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
+                        </div>
                         </div>
                     </div>`;
                 
@@ -122,17 +124,20 @@ function fetchAndDisplayJobByLocation() {
                             <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                             <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                             <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
+                            <div class="d-grid gap-2">
                             <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
+                            </div>
                             <!-- Comment Input Section -->
                             <div class="comment-input-section">
     <input type="text" class="comment-input" placeholder="Add a comment...">
-    <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+   
 </div>
                 
                             <!-- See All Comments Section -->
                             <div class="see-all-comments-section">
-    <a href="#" class="see-all-comments-link">See All Comments</a>
-</div>
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
+                    </div>
                         </div>
                     </div>`;
                 
@@ -188,16 +193,19 @@ function fetchAndDisplayJobBySalary() {
                         <p class="job-info"><strong>Company Name:</strong> ${vacancy.companyName}</p>
                         <p class="job-info"><strong>Major Name:</strong> ${vacancy.majorName}</p>
                         <p class="job-info"><strong>Recruiter:</strong> ${vacancy.recruiterUsername}</p>
+                        <div class="d-grid gap-2">
                         <button class="btn btn-success" onclick="applyToVacancy(${vacancy.vacancyId})">Apply</button>
-                        <!-- Comment Input Section -->
+                        </div>
                         <div class="comment-input-section">
                             <input type="text" class="comment-input" placeholder="Add a comment...">
-                            <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                           
                         </div>
             
                         <!-- See All Comments Section -->
+                    
                         <div class="see-all-comments-section">
-                        <a href="#" class="see-all-comments-link ">See All Comments</a>
+                        <button class="add-comment-btn" onclick="addComment(${vacancy.vacancyId})">Add Comment</button>
+                        <a href="#" class="see-all-comments-link"><i class="fa-solid fa-message"></i></a>
                     </div>
                     </div>
                 </div>
