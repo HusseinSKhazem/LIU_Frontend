@@ -85,53 +85,47 @@ background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<!-- ... (previous code) ... -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-   <!-- Script for jspdf -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-   
-   <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
-function loadImage(src) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = src;
-    });
-}
-
-async function downloadPDF() {
-    const resumeContainer = document.querySelector('.resume-container');
-    const profilePictureSrc = document.querySelector('.profile-picture').src;
-
-    try {
-        const profilePicture = await loadImage(profilePictureSrc);
-
-        html2canvas(resumeContainer, { useCORS: true }).then(canvas => {
-            const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
-            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 210, 297);
-            pdf.save('resume.pdf');
+<script>
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
         });
-    } catch (error) {
-        console.error('Error loading the profile picture:', error);
     }
-}
 
+    async function downloadPDF() {
+        const resumeContainer = document.querySelector('.resume-container');
+        try {
+            const canvas = await html2canvas(resumeContainer, { useCORS: true, scale: 3, dpi: 500});
+            const canvasDataURL = canvas.toDataURL('image/png');
+            console.log('Canvas Data URL:', canvasDataURL);
+            const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+            pdf.addImage(canvasDataURL, 'PNG', 0, 0, 210, 297);
+            pdf.save('resume.pdf');
+        } catch (error) {
+            console.error('Error creating PDF:', error);
+        }
+    }
 
-const downloadButton = document.createElement('button');
+    const downloadButton = document.createElement('button');
     downloadButton.textContent = 'Download PDF';
     downloadButton.className = 'btn btn-warning m-4';
     downloadButton.style.position = 'fixed';
     downloadButton.style.bottom = '0';
     downloadButton.style.right = '0';
-    
+
     downloadButton.addEventListener('click', downloadPDF);
 
-    // Append the button to the body
     document.body.appendChild(downloadButton);
-   </script>
-   
+</script>
+
 
 </body>
 </html>

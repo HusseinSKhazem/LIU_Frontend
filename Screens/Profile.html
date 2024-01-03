@@ -94,7 +94,7 @@
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (organization name)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputOrgName">Organization name</label>
+                                    <label class="small mb-1" for="inputOrgName">Skills</label>
                                     <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
                                 </div>
                                 <!-- Form Group (location)-->
@@ -234,15 +234,10 @@
 }
 
 function showSuccessBanner(message) {
-  // Create a success alert
   var alertDiv = document.createElement("div");
   alertDiv.className = "alert alert-success";
   alertDiv.innerHTML = message;
-
-  // Append the alert to the top of the body
   document.body.insertBefore(alertDiv, document.body.firstChild);
-
-  // Remove the alert after 3 seconds (adjust the timeout as needed)
   setTimeout(function () {
     alertDiv.remove();
   }, 3000);
