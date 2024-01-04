@@ -86,15 +86,18 @@ function addComment(vacancyID) {
     
         comments.forEach(function(comment) {
             var commentHtml = `
-                <div class="comment-container mt-3">
-                    <div class="comment-profile-picture">
-                        <img src="https://localhost:44346/api/User/GetProfilePicture/${comment.profilePicture.id}" alt="Profile Picture">
-                    </div>
-                    <div class="comment-content">
-                        <p class="comment-username">${comment.username}</p>
-                        <p class="comment-text">${comment.content}</p>
-                    </div>
-                </div>
+            <div class="comment-container">
+    <div class="comment-profile">
+        <img src="https://localhost:44346/api/User/GetProfilePicture/${comment.profilePicture.id}" alt="Profile Picture">
+    </div>
+    <div class="comment-details">
+        <div class="comment-header">
+            <p class="comment-username">${comment.username}</p>
+            <p class="comment-date">${formatCustomDate(comment.dateTime)}</p>
+        </div>
+        <p class="comment-text">${comment.content}</p>
+    </div>
+</div>
             `;
             commentsContainer.append(commentHtml);
         });
@@ -121,3 +124,11 @@ function addComment(vacancyID) {
             });
     });
     
+    function formatCustomDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+    
+        return `${year}-${month}-${day}`;
+    }
