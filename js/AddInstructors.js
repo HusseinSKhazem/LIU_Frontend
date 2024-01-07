@@ -38,7 +38,7 @@ function addInstructor() {
   };
 
   // Retrieve the access token from localStorage
-  var accessToken = localStorage.getItem("jwtToken");
+  var accessToken = sessionStorage.getItem("jwtToken");
   console.log("Access Token:", accessToken);
 
   fetch("https://localhost:44346/api/Admin/AddInstructor", {

@@ -1,5 +1,5 @@
 function addRecommendation() {
-  const jwtToken = localStorage.getItem('jwtToken');
+  const jwtToken = sessionStorage.getItem('jwtToken');
   var claims = parseJwt(jwtToken);
   var instructorEmail = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
   const studentEmail = document.getElementById('studentEmail').value;

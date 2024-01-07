@@ -68,7 +68,7 @@ async function approveRecruiter(recruiterID) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+      Authorization: "Bearer " + sessionStorage.getItem("jwtToken"),
     },
   });
 

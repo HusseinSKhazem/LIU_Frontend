@@ -50,7 +50,7 @@ function removeProject() {
 async function submitForm(event) {
     event.preventDefault();
 
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = sessionStorage.getItem('jwtToken');
     var claims = parseJwt(jwtToken);
     var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 

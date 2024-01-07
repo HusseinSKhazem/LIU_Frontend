@@ -18,7 +18,7 @@ async function displayVacancies() {
   const vacancyListContainer = document.getElementById('vacancyList');
 
   try {
-      const jwtToken = localStorage.getItem('jwtToken');
+      const jwtToken = sessionStorage.getItem('jwtToken');
       var claims = parseJwt(jwtToken);
       var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
@@ -45,7 +45,7 @@ async function displayVacancies() {
 
 async function deleteVacancy(vacancyId) {
   try {
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = sessionStorage.getItem('jwtToken');
     console.log(vacancyId)
 
     const response = await fetch(`https://localhost:44346/api/Recruiter/DeleteVacancy/${vacancyId}`, {

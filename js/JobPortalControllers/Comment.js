@@ -3,7 +3,7 @@ function addComment(vacancyID) {
     console.log("addComment function called for Vacancy ID:", vacancyID);
     if (commentInput) {
         const commentContent = commentInput.value;
-        const jwtToken = localStorage.getItem('jwtToken');
+        const jwtToken = sessionStorage.getItem('jwtToken');
         var claims = parseJwt(jwtToken);
         var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
         fetch(`https://localhost:44346/api/Comments/AddComment?vacancyID=${vacancyID}`, {
@@ -33,7 +33,7 @@ function addComment(vacancyID) {
                 if (response.status === 400) {
                     // Handle plain text response
                     response.text().then(errorMessage => {
-                        alert(`Bad Request: ${errorMessage}`);
+                        alert(`Enter a comment in the related field`);
                     });
                 } else {
                     throw new Error(`Error adding comment for Vacancy ${vacancyID}. Status: ${response.status}`);

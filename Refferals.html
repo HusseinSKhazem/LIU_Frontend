@@ -123,7 +123,7 @@ background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
             const referralsTableBody = document.getElementById("referralsTableBody");
 
             try {
-                const jwtToken = localStorage.getItem("jwtToken");
+                const jwtToken = sessionStorage.getItem("jwtToken");
                 var claims = parseJwt(jwtToken);
                 var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
@@ -165,7 +165,7 @@ background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
         }
 
         async function fetchReferrals(vacancyId) {
-            const jwtToken = localStorage.getItem("jwtToken");
+            const jwtToken = sessionStorage.getItem("jwtToken");
                 var claims = parseJwt(jwtToken);
                 var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
             try {

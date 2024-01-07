@@ -164,7 +164,7 @@
     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var token = localStorage.getItem("jwtToken");
+        var token = sessionStorage.getItem("jwtToken");
         console.log(token);
         if (!token) {
           window.location.href = "login.html";
@@ -216,7 +216,7 @@
     <script>
       function searchApplications(vacancyId) {
 
-        var token = localStorage.getItem("jwtToken");
+        var token = sessionStorage.getItem("jwtToken");
 
      
         if (!token) {
@@ -321,7 +321,7 @@
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`,
+            'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`,
         },
     })
         .then(response => response.json())
@@ -362,7 +362,7 @@ function openInterviewModal(applicationID) {
         const vacancyListContainer = document.getElementById("majorSelect");
 
         try {
-          const jwtToken = localStorage.getItem("jwtToken");
+          const jwtToken = sessionStorage.getItem("jwtToken");
           var claims = parseJwt(jwtToken);
           var email =
             claims[
@@ -424,7 +424,7 @@ function openInterviewModal(applicationID) {
       
 
       function acceptApplication(applicationID) {
-  var jwtToken = localStorage.getItem('jwtToken');
+  var jwtToken = sessionStorage.getItem('jwtToken');
 
   var apiUrl = 'https://localhost:44346/api/Recruiter/AcceptApplication?applicationID=' + applicationID;
 
@@ -450,7 +450,7 @@ function openInterviewModal(applicationID) {
 
 
 function rejectApplication(applicationID) {
-    var jwtToken = localStorage.getItem('jwtToken');
+    var jwtToken = sessionStorage.getItem('jwtToken');
 
     var apiUrl = 'https://localhost:44346/api/Recruiter/RejectApplication?applicationID=' + applicationID;
 

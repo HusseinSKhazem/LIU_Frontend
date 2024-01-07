@@ -101,7 +101,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          var token = localStorage.getItem("jwtToken");
+          var token = sessionStorage.getItem("jwtToken");
           var claims = parseJwt(token);
           var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
           console.log(token);
@@ -151,13 +151,13 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,242,242,1) 
       </script>
       <script>
         function uploadFile() {
-            var token = localStorage.getItem("jwtToken");
+            var token = sessionStorage.getItem("jwtToken");
             var email = parseJwt(token)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
             var fileInput = document.getElementById("fileInput");
             var file = fileInput.files[0];
 
             if (!token) {
-                window.location.href = "login.html";
+                window.location.href = "../login.html";
             }
 
             var formData = new FormData();

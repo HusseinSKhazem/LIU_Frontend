@@ -102,7 +102,7 @@ async function performLogin() {
 
     if (response.ok) {
       var jwtToken = await response.text();
-      localStorage.setItem("jwtToken", jwtToken);
+      sessionStorage.setItem("jwtToken", jwtToken);
 
       var claims = parseJwt(jwtToken);
       if (claims && claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Admin") {

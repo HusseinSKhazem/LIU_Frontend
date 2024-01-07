@@ -142,7 +142,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
 
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = sessionStorage.getItem('jwtToken');
     var claims = parseJwt(jwtToken);
     var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
@@ -232,7 +232,7 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var token = localStorage.getItem("jwtToken");
+      var token = sessionStorage.getItem("jwtToken");
       console.log(token);
       if (!token) {
         window.location.href = "login.html";

@@ -76,8 +76,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Fetch token from localStorage
-    const jwtToken = localStorage.getItem('jwtToken');
+
+    const jwtToken = sessionStorage.getItem('jwtToken');
 
     // Fetch data from API using authorized token
     fetch('https://localhost:44346/api/Admin/BadComments', {
@@ -109,7 +109,7 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var token = localStorage.getItem("jwtToken");
+      var token = sessionStorage.getItem("jwtToken");
       console.log(token);
       if (!token) {
         window.location.href = "login.html";

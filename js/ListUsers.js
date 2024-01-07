@@ -9,7 +9,7 @@ async function searchUsers() {
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const usersForCurrentPage = allUsers.slice(startIndex, endIndex);
-  var token = localStorage.getItem("jwtToken")
+  var token = sessionStorage.getItem("jwtToken")
 console.log(token);
 
   displayUsersTable(usersForCurrentPage);

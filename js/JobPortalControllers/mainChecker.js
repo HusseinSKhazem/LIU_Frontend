@@ -5,7 +5,7 @@ window.onload = function () {
 
 function fetchResumeStatus() {
     try {
-        const jwtToken = localStorage.getItem('jwtToken');
+        const jwtToken = sessionStorage.getItem('jwtToken');
         var claims = parseJwt(jwtToken);
         var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
     

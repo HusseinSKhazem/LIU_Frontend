@@ -162,7 +162,7 @@
 />
 <script>
     function saveChanges() {
-      const jwtToken = localStorage.getItem('jwtToken');
+      const jwtToken = sessionStorage.getItem('jwtToken');
     var claims = parseJwt(jwtToken);
     var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
     const mail = encodeURIComponent(Email);
@@ -254,7 +254,7 @@ function showSuccessBanner(message) {
                 const file = fileInput.files[0];
 
                 if (file) {
-                    const jwtToken = localStorage.getItem('jwtToken');
+                    const jwtToken = sessionStorage.getItem('jwtToken');
                     var claims = parseJwt(jwtToken);
                     var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
                     const email = encodeURIComponent(Email);
@@ -304,7 +304,7 @@ function showSuccessBanner(message) {
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var token = localStorage.getItem("jwtToken");
+      var token = sessionStorage.getItem("jwtToken");
       console.log(token);
       if (!token) {
         window.location.href = "login.html";
@@ -357,10 +357,10 @@ function showSuccessBanner(message) {
   </script>
       <script>
         document.addEventListener("DOMContentLoaded", function () {
-          var token = localStorage.getItem("jwtToken");
+          var token = sessionStorage.getItem("jwtToken");
           console.log(token);
           if (!token) {
-            window.location.href = "login.html";
+            window.location.href = "../login.html";
           }
   
           var claims = parseJwt(token);

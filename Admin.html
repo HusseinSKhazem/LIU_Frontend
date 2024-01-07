@@ -279,7 +279,7 @@
     <script src="./js/AdminMajor.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var token = localStorage.getItem("jwtToken");
+        var token = sessionStorage.getItem("jwtToken");
         console.log(token);
         if (!token) {
           window.location.href = "login.html";

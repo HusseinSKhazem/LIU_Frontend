@@ -157,7 +157,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          var token = localStorage.getItem("jwtToken");
+          var token = sessionStorage.getItem("jwtToken");
           var claims = parseJwt(token);
           var email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
           console.log(token);

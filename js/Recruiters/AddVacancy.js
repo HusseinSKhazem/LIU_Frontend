@@ -2,7 +2,7 @@ async function postVacancy(event) {
   try {
     event.preventDefault();
 
-    var jwtToken = localStorage.getItem("jwtToken");
+    var jwtToken = sessionStorage.getItem("jwtToken");
     console.log(jwtToken);
     var claims = parseJwt(jwtToken);
     if (claims && claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]) {

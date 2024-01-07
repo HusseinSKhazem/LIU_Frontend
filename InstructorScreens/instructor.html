@@ -66,7 +66,7 @@ color: #ffb019;
 
     <script>
 function addRecommendation() {
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = sessionStorage.getItem('jwtToken');
     var claims = parseJwt(jwtToken);
     var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
     var studentId = document.getElementById('studentId').value;

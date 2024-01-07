@@ -12,7 +12,7 @@ function addStudent() {
     username: username,
     majorID: parseInt(majorID, 10),
   };
-  var accessToken = localStorage.getItem("jwtToken");
+  var accessToken = sessionStorage.getItem("jwtToken");
   console.log("Access Token:", accessToken);
 
   fetch("https://localhost:44346/api/Admin/AddStudent", {

@@ -53,10 +53,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="../InstructorScreens/instructor.html" style=" color: #0c2542!important;">Recommend</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" href="#" style=" color: #0c2542!important;">Logout</a>
+              </li>
             </ul>
           </div>
         </div>
-      </nav>
+      </nav>s
 
       <div class="container mt-3 top p-5">
         <div class="content">
@@ -96,10 +99,10 @@
     <img id="bottomRightImage" src="../assets/Logo.png"  alt=""></a>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var token = localStorage.getItem("jwtToken");
+        var token = sessionStorage.getItem("jwtToken");
         console.log(token);
         if (!token) {
-          window.location.href = "login.html";
+          window.location.href = "../login.html";
         }
 
         var claims = parseJwt(token);
@@ -145,6 +148,7 @@
         }
       });
     </script>
+    <script src="../js/JWT.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/instructor/fill_one.js"></script>
     <script src="../js/instructor/fill_two.js"></script>
