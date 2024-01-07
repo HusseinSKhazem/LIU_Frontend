@@ -1,3 +1,7 @@
+body{
+  font-family: 'Kanit', sans-serif;
+}
+
 .navbar{
   background-color: #0c2542;
   padding: 25px;

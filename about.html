@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Your Company</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Kanit', sans-serif;
+      transition: background-color 1s ease-in-out;
+    }
+
+    .navbar {
+      background-color: #0c2542;
+      padding: 1rem;
+      border-bottom: 2px solid #0c2542;
+      transition: background-color 0.5s ease-in-out;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.8rem;
+      transition: color 0.5s ease-in-out;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #fff;
+      transition: background-color 0.5s ease-in-out;
+    }
+
+    .navbar-nav {
+      margin-right: auto;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ffc107;
+    }
+
+    .jumbotron {
+      background-color: #ffb019;
+      color: #0c2542;
+      padding: 150px 0;
+      margin-bottom: 0;
+      text-align: center;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    }
+
+    .jumbotron h1 {
+      font-size: 4.5rem;
+      transition: color 0.5s ease-in-out;
+    }
+
+    .jumbotron p {
+      font-size: 1.5rem;
+      transition: color 0.5s ease-in-out;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .about-section {
+      margin-bottom: 50px;
+    }
+
+    .about-section h2 {
+      color: #333;
+      font-size: 2.5rem;
+      transition: color 0.5s ease-in-out;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+    }
+
+    .feature-box {
+    text-align: center;
+    padding: 3rem;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+    height: 100%; /* Add this line to set a fixed height */
+  }
+
+    .feature-box i {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 20px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .feature-box h3 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 20px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .feature-box:hover {
+      background-color: #ffc107;
+      transform: scale(1.05);
+    }
+
+    .feature-box:hover i,
+    .feature-box:hover h3 {
+      color: #333;
+    }
+
+    .map-container {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .mobile-app-section {
+      background-color: #0c2542;
+      color: #fff;
+      padding: 50px 0;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .mobile-app-section h2 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: #ffc107;
+      transition: color 0.5s ease-in-out;
+    }
+
+    .mobile-app-mockup {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .mobile-app-mockup:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #ffb019;
+      color: #0c2542;
+      text-align: center;
+      padding: 20px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">LIU Connect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="./about.html">About Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">About LIU Connect</h1>
+      <p class="lead">Empowering students and recruiters to connect seamlessly - transforming education into opportunities.</p>
+    </div>
+  </div>
+
+  <!-- About Us Content -->
+  <div class="container about-section">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Our Story</h2>
+        <p>
+          LIU Connect, a groundbreaking platform by the Lebanese International University, revolutionizes the job search for students and recruiters alike. Administered by LIU's dedicated team, this user-friendly interface facilitates connections between academic aspirations and professional opportunities, establishing LIU as a vibrant hub of career collaboration.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h2>Our Features</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="feature-box">
+              <i class="fas fa-check-circle"></i>
+              <h3>Streamlined Job Search</h3>
+              <p>Effortlessly find quality job opportunities tailored to your skills and aspirations.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-box">
+              <i class="fas fa-users"></i>
+              <h3>Connect with Talent</h3>
+              <p>Recruiters gain access to a diverse pool of talented individuals, ensuring the perfect match for every opportunity.</p>
+            </div>
+          </div>
+          <!-- Add more feature boxes as needed -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map -->
+  <div class="container mb-5">
+    <h2>Visit Us</h2>
+    <!-- Replace the src attribute with your Google Maps embed code -->
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.1925325243283!2d35.49273147550895!3d33.88469497322046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f1721587e1d6d%3A0xaa7f5769dc576d98!2sLebanese%20International%20University!5e0!3m2!1sen!2slb!4v1704636674705!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- Our Mobile App Section -->
+  <div class="container-fluid mobile-app-section">
+    <h2>Discover Our Mobile App</h2>
+    <p>Experience seamless connections with our mobile app. Download now and unlock exclusive features.</p>
+    <img src="https://via.placeholder.com/800x500" alt="Mobile App Mockup" class="mobile-app-mockup">
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 LIU Connect. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Font Awesome icons (for features) -->
+  
+</body>
+</html>

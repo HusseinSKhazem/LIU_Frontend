@@ -31,9 +31,15 @@ function addComment(vacancyID) {
                 }, 2500);
             } else {
                 if (response.status === 400) {
-                    // Handle plain text response
                     response.text().then(errorMessage => {
-                        alert(`Enter a comment in the related field`);
+                        console.error(`Error adding comment for Vacancy ${vacancyID}: ${errorMessage}`);
+                        const errorAlert = document.getElementById('comment-error-alert');
+                        centerElementInViewport(errorAlert);
+                        errorAlert.style.display = 'block';
+        
+                        setTimeout(() => {
+                            errorAlert.style.display = 'none';
+                        }, 2500);
                     });
                 } else {
                     throw new Error(`Error adding comment for Vacancy ${vacancyID}. Status: ${response.status}`);
@@ -42,7 +48,6 @@ function addComment(vacancyID) {
         })
         
         .then(data => {
-            // Handle the text response, you can update the UI or perform other actions here
             console.log(`Comment added successfully for Vacancy ${vacancyID}:`, data);
         })
         .catch(error => {
@@ -79,7 +84,7 @@ function addComment(vacancyID) {
         });
     }
     
-    // Function to display comments in a modal
+
     function displayCommentsModal(comments) {
         var commentsContainer = $("#commentsContainer");
         commentsContainer.empty();
@@ -102,21 +107,17 @@ function addComment(vacancyID) {
             commentsContainer.append(commentHtml);
         });
     
-        // Show the modal
+
         $("#commentsModal").modal("show");
     }
     
-    // Event delegation for "See All Comments" link
     $(document).on("click", ".see-all-comments-section a", function(e) {
         e.preventDefault();
     
-        // Get the vacancy ID associated with the clicked job card
+        
         var vacancyId = $(this).closest(".job-card").data("vacancy-id");
-    
-        // Fetch comments from the API
         fetchCommentsFromApi(vacancyId)
             .then(function(comments) {
-                // Display comments in the modal
                 displayCommentsModal(comments);
             })
             .catch(function(error) {

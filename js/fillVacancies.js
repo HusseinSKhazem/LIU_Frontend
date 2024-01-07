@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var thead = document.createElement("thead");
     thead.classList.add("thead-blue"); 
     var headerRow = document.createElement("tr");
-    var headers = ["Vacancy ID", "Status", "Work Location", "Salary", "Working Hours", "Job Offer"];
+    var headers = ["Vacancy", "Status", "Work Location", "Salary", "Working Hours", "Job Offer"];
 
     headers.forEach(headerText => {
         var th = document.createElement("th");
@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var vacancyIdLink = document.createElement("a");
         
  
-        vacancyIdLink.textContent = vacancy["vacancyId"];
-        
+        vacancyIdLink.textContent = "Details";
+        vacancyIdLink.style.fontWeight = "bold";
 
         vacancyIdLink.href = "../adminVacancy.html?vacancyId=" + vacancy["vacancyId"];
         
@@ -78,4 +78,3 @@ document.addEventListener("DOMContentLoaded", function () {
     vacanciesTableContainer.appendChild(tableWrapper);
 }
 
-  
