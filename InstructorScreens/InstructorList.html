@@ -588,36 +588,50 @@ a {
     var Email = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
     fetch('https://localhost:44346/api/Instructor/Refer', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            studentEmail,
-            instructorEmail: Email,
-            description,
-            vacancyID,
-        }),
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        studentEmail,
+        instructorEmail: Email,
+        description,
+        vacancyID,
+    }),
+})
+.then(response => {
+    if (response.ok) {
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            return response.json(); 
         } else {
-            return response.text().then(errorMessage => {
-                throw new Error(`${errorMessage}`);
-            });
+            return response.text();
         }
-    })
-    .then(data => {
+    } else {
+        return response.text().then(errorMessage => {
+            throw new Error(`${errorMessage}`);
+        });
+    }
+})
+.then(data => {
+ 
+    if (typeof data === 'object') {
+      
         console.log('JSON Response:', data);
         showSuccessBanner('Referral added successfully!');
-        $('#referModal').modal('hide');
-    })
-    .catch(error => {
-        console.error('Fetch error:', error.message);
-        showErrorBanner(error.message);
-        $('#referModal').modal('hide');
-    });
+    } else {
+       
+        console.log('Text Response:', data);
+        showSuccessBanner(data); 
+    }
+    $('#referModal').modal('hide');
+})
+.catch(error => {
+    console.error('Fetch error:', error.message);
+    showErrorBanner(error.message);
+    $('#referModal').modal('hide');
+});
 });
 
 function showSuccessBanner(message) {

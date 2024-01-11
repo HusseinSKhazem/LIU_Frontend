@@ -3,131 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"
-  />
-    <title>Document</title>
+    <title>Enhanced Registration Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-         .banner {
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .custom-banner {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
-    }
+            border-radius: 0.5rem;
+            padding: 1rem;
+            width: 90%;
+            max-width: 600px;
+        }
+        .container {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; 
+}
+.image-container{
+     display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+
+}
+        input[type="text"], input[type="password"], input[type="email"] {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    border-color: #24067f; 
+}
+
+button[type="submit"] {
+    background-color: #ffb019;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+
     </style>
 </head>
-<body>
-   
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form id="registrationForm">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        <input type="text" class="form-control" id="location" name="location" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="website">Website</label>
-                        <input type="text" class="form-control" id="website" name="website" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="companyName">Company Name</label>
-                        <input type="text" class="form-control" id="companyName" name="companyName" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </form>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
+        <h2 class="text-2xl font-bold mb-6 text-center">Registration Form</h2>
+        <div  class="image-container">
+        <img src="./assets/Logo.png" class="flex-1 justify-center " alt=""></div>
+        <form id="registrationForm" class="mb-4">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" name="username" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
-        </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password" name="password" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
+                <input type="text" id="location" name="location" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="website" class="block text-gray-700 text-sm font-bold mb-2">Website</label>
+                <input type="text" id="website" name="website" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="companyName" class="block text-gray-700 text-sm font-bold mb-2">Company Name</label>
+                <input type="text" id="companyName" name="companyName" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Register</button>
+        </form>
     </div>
 
-    <div id="successBanner" class="alert alert-success banner" role="alert">
+    <div id="successBanner" class="custom-banner bg-green-500 text-white">
         <strong>Success!</strong> Your operation was successful.
-      </div>
+    </div>
       
-      <div id="errorBanner" class="alert alert-danger banner" role="alert">
+    <div id="errorBanner" class="custom-banner bg-red-500 text-white">
         <strong>Error!</strong> Something went wrong.
-      </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
+            const formData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+                website: document.getElementById('website').value,
+                companyName: document.getElementById('companyName').value,
+            };
 
-
-
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-  crossorigin="anonymous"
-></script>
-<!-- Animate.css CDN link -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
-
-<script>
-    document.getElementById('registrationForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const formData = {
-            username: document.getElementById('username').value,
-            password: document.getElementById('password').value,
-            email: document.getElementById('email').value,
-            location: document.getElementById('location').value,
-            website: document.getElementById('website').value,
-            companyName: document.getElementById('companyName').value,
-        };
-
-        
-        fetch('https://localhost:44346/api/Auth/Registration', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            showSuccessBanner("Recruiter was added successfully");
-            window.location.href = './login.html';
-           
-        })
-        .catch(error => {
-            showErrorBanner("Something went wrong!");
-
+            fetch('https://localhost:44346/api/Auth/Registration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                showSuccessBanner("Recruiter was added successfully");
+                window.location.href = './login.html';
+            })
+            .catch(error => {
+                showErrorBanner("Something went wrong!");
+            });
         });
-    });
 
-    function showSuccessBanner(message) {
-    $('#successBanner').html('<strong>Success!</strong> ' + message).fadeIn().delay(3000).fadeOut();
-  }
+        function showSuccessBanner(message) {
+            $('#successBanner').html('<strong>Success!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+        }
 
-  function showErrorBanner(message) {
-    $('#errorBanner').html('<strong>Error!</strong> ' + message).fadeIn().delay(3000).fadeOut();
-  }
-</script>
-
+        function showErrorBanner(message) {
+            $('#errorBanner').html('<strong>Error!</strong> ' + message).fadeIn().delay(3000).fadeOut();
+        }
+    </script>
 </body>
-
 </html>

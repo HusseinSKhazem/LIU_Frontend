@@ -229,56 +229,6 @@ background: linear-gradient(94deg, rgba(255,176,25,1) 0%, rgba(12,37,66,1) 75%);
             }
         }
     </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          var token = sessionStorage.getItem("jwtToken");
-          console.log(token);
-          if (!token) {
-            window.location.href = "login.html";
-          }
-      
-          var claims = parseJwt(token);
-      
-          if (
-            claims[
-              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-            ] != "Recruiter"
-          ) {
-            console.log("Role claim isn't; 'Recruiter', attempting redirection...");
-            setTimeout(function () {
-              console.log("Redirecting to Index.html...");
-              window.location.href = "/index.html";
-            }, 0);
-          } else {
-            console.log("Login Successful");
-          }
-          function parseJwt(token) {
-            try {
-              if (!token) {
-                console.log("JWT Token is empty or undefined");
-                return null;
-              }
-      
-              var base64Url = token.split(".")[1];
-              var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-              var jsonPayload = decodeURIComponent(
-                atob(base64)
-                  .split("")
-                  .map(function (c) {
-                    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-                  })
-                  .join("")
-              );
-      
-              return JSON.parse(jsonPayload);
-            } catch (error) {
-              console.error("Error parsing JWT:", error);
-              return null;
-            }
-          }
-        });
-      </script>
-      <script src="./js/JobPortalControllers/RecruiterController.js"></script>
 </body>
 
 </html>
